@@ -1,0 +1,15 @@
+img {
+    max-width: 100%;
+}
+.h_left {
+    justify-content: flex-start;
+}
+.h_center {
+    justify-content: center;
+  }
+.h_right {
+    justify-content: flex-end;
+  }
+.flex {
+    display: flex;
+}

@@ -1,0 +1,19 @@
+.promo-bar {
+    background: #000;
+    text-align: center;
+    font-size: 13px;
+    color: #fff;
+    font-weight: 700;
+    padding: 10px 0;
+    position: relative;
+    z-index: 999;
+    text-transform: uppercase;
+
+    &--type-5 {
+        background: #c08375;
+        color: #000000;
+    }
+    p {
+        margin-bottom: 0;
+    }
+}

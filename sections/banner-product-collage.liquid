@@ -1,0 +1,197 @@
+{% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"  defer="defer"></script> {% endcomment %}
+<script src="{{ 'slick.min.js' | asset_url }}" defer ></script>
+{{ 'slick.min.css' | asset_url | stylesheet_tag }}
+{{ 'slick-theme.min.css' | asset_url | stylesheet_tag }}
+{%  style  %} 
+.product-media img, .product-item img {
+    width:100%;
+    height:100%;
+}
+.product-info {
+    padding:15px 0;
+}
+.product-brand {
+    font-size:18px; 
+}
+.price {
+    text-align:right;
+}
+
+.slick-slider {
+    margin-bottom: 0;
+}
+.slick-next:before, .slick-prev:before {
+    color:#000;
+}
+.slick-next{
+    right:-50px;
+}
+.slick-prev{
+    left:-50px;
+}
+.product-carosuel-box {
+    padding:50px 100px 50px 150px;
+}
+@media screen and (max-width:749px) {
+    .product-carosuel-box {
+        padding:50px 80px 50px 80px;
+    }
+    .slick-slider {
+        order:1;
+    }
+}
+{% endstyle %} 
+{%- liquid -%}
+<div class="row">
+  <div class="slider slider-for col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+    {%- for product in section.settings.collection.products  -%}
+           
+        <div class="product-media product-second-image">
+        {%- if product.media[1] != null -%}
+            <img
+              srcset="
+                {%- if product.media[1].width >= 165 -%}{{ product.media[1] | image_url: width: 165 }} 165w,{%- endif -%}
+                {%- if product.media[1].width >= 360 -%}{{ product.media[1] | image_url: width: 360 }} 360w,{%- endif -%}
+                {%- if product.media[1].width >= 533 -%}{{ product.media[1] | image_url: width: 533 }} 533w,{%- endif -%}
+                {%- if product.media[1].width >= 720 -%}{{ product.media[1] | image_url: width: 720 }} 720w,{%- endif -%}
+                {%- if product.media[1].width >= 940 -%}{{ product.media[1] | image_url: width: 940 }} 940w,{%- endif -%}
+                {%- if product.media[1].width >= 1066 -%}{{ product.media[1] | image_url: width: 1066 }} 1066w,{%- endif -%}
+                {{ product.media[1] | image_url }} {{ product.media[1].width }}w
+              "
+              src="{{ product.media[1] | image_url: width: 533 }}"
+              sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+              alt=""
+              class="motion-reduce"
+              loading="lazy"
+              width="{{ product.media[1].width }}"
+              height="{{ product.media[1].height }}"
+            >
+          {%- endif -%}
+          </div>
+    {%- endfor -%}
+    
+  </div>
+  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12 product-carosuel-box">
+    <div class="slider slider-nav ">
+        {%- for product in section.settings.collection.products  -%}
+            <div class="product-item">
+                <img
+                srcset="
+                  {%- if product.featured_media.width >= 165 -%}{{ product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+                  {%- if product.featured_media.width >= 360 -%}{{ product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+                  {%- if product.featured_media.width >= 533 -%}{{ product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+                  {%- if product.featured_media.width >= 720 -%}{{ product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+                  {%- if product.featured_media.width >= 940 -%}{{ product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
+                  {%- if product.featured_media.width >= 1066 -%}{{ product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+                  {{ product.featured_media | image_url }} {{ product.featured_media.width }}w
+                "
+                src="{{ product.featured_media | image_url: width: 533 }}"
+                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                alt="{{ product.featured_media.alt | escape }}"
+                class="motion-reduce"
+                {% unless lazy_load == false %}
+                  loading="lazy"
+                {% endunless %}
+                width="{{ product.featured_media.width }}"
+                height="{{ product.featured_media.height }}"
+              >
+              <div class="product-info row">
+                    <div class="col-md-6">
+                        <p class="product-brand"> {{ product.vendor | escape }}</p>
+                        <div class="product-title"> <a
+                        href="{{ product.url }}"
+                        id="StandardCardNoMediaLink-{{ section_id }}-{{ product.id }}"
+                        class="full-unstyled-link"
+                        aria-labelledby="StandardCardNoMediaLink-{{ section_id }}-{{ product.id }} NoMediaStandardBadge-{{ section_id }}-{{ product.id }}"
+                      >
+                        {{ product.title | escape }}
+                      </a></div>
+                       
+                    </div>
+                    <div class="col-md-6">
+                        <div class="price">{% render 'price', product: product, price_class: '', show_compare_at_price: true %}</div>
+                    </div>
+                </div> 
+            </div>
+        {% endfor %}
+        
+  
+  </div>
+  </div>
+  </div>
+{% schema  %}
+    {
+        "name":"Banner Product Collage",
+        "class":"banner-product-collage",
+        "tag":"section",
+        "disabled_on": {
+            "groups": ["header", "footer"]
+        },
+        "settings":[
+            {
+            "type": "inline_richtext",
+            "id": "title",
+            "default": "Multicolumn",
+            "label": "t:sections.multicolumn.settings.title.label"
+            },
+            {
+            "type": "select",
+            "id": "heading_size",
+            "options": [
+                {
+                "value": "h2",
+                "label": "t:sections.all.heading_size.options__1.label"
+                },
+                {
+                "value": "h1",
+                "label": "t:sections.all.heading_size.options__2.label"
+                },
+                {
+                "value": "h0",
+                "label": "t:sections.all.heading_size.options__3.label"
+                }
+            ],
+            "default": "h1",
+            "label": "t:sections.all.heading_size.label"
+            },
+            {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collections"
+            }
+        ],
+        "presets":[
+           { 
+            "name":"Banner Product Collage"
+            }
+        ]
+
+    }
+{% endschema %}
+<script>
+    jQuery(document).ready(function($){
+        $('.slider-for').slick({
+   slidesToShow: 1,
+   slidesToScroll: 1,
+   arrows: false,
+   fade: true,
+   asNavFor: '.slider-nav'
+ });
+ $('.slider-nav').slick({
+   slidesToShow: 1,
+   slidesToScroll: 1,
+   asNavFor: '.slider-for',
+   dots: false,
+   focusOnSelect: true
+ });
+
+ $('a[data-slide]').click(function(e) {
+   e.preventDefault();
+   var slideno = $(this).data('slide');
+   $('.slider-nav').slick('slickGoTo', slideno - 1);
+ });
+    });
+       
+ 
+
+</script>
