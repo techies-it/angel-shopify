@@ -91,6 +91,13 @@
                   {%- if option.name == 'Color' -%}
     
                     {%- for value in option.values -%}   
+                      
+                        {%- for variant in card_product.variants -%}
+                            {%- if variant.title contains value -%}
+                              {%- assign variantImgSrc = variant.image.src | img_url: width: 100 -%}
+                              {%- break -%}
+                            {%- endif -%}
+                          {%- endfor -%}
                     {%- liquid
                         assign swatch = value.swatch 
                         assign swatch_value = 'rgb(' | append: swatch.color.rgb | append: ')'   
@@ -109,7 +116,7 @@
                     {% comment %} {% render 'swatch', swatch: value.swatch, shape: section.settings.swatch_shape %} {% endcomment %}
                     
                   </span>
-                  <div class="tii_product-color-swatches tii_option-swatch-js large tii_tooltip tii_{{ value | downcase }}" data-value="{{ value | escape }}" data-color="{{ value | downcase }}" data-position="2" data-image="{{ swatch_image }}"  style="background-color: {{ swatch_value }};">
+                  <div class="tii_product-color-swatches tii_option-swatch-js large tii_tooltip tii_{{ value | downcase }}" data-value="{{ value | escape }}" data-color="{{ value | downcase }}" data-position="2" data-image="{{ variantImgSrc }}"  style="background-color: {{ swatch_value }};">
                         <span class="tii_tooltip-content">{{ value | escape }}</span>
                     </div>
                     {%- endfor -%}

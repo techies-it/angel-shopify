@@ -4,11 +4,11 @@
         font-weight: 700;
     }
     .product__title {
+        margin: 12px 0 !important;
         h1 {
             font-size: 18px;
             font-weight: 400;
-        }
-       
+        } 
     }  
     .accordion__title {
         font-size: 16px;
@@ -22,6 +22,22 @@
         margin-bottom: 10px;
     }
     .product-form__input--swatch .swatch-input__input + .swatch-input__label {
-        --swatch-input--size: 8.8rem;
+        --swatch-input--size: 7.0rem;
+        height: 90px;
+        background: #f6f6f6;
+        display: grid;
+        align-items: center;
+    }
+    .swatch{
+        border: 0;
+    }
+    .swatch-input__input + .swatch-input__label{
+        outline-offset: 0;
+    }
+    .swatch-input__input + .swatch-input__label.swatch-input__label--square {
+        --swatch-input--border-radius: 0;
+    }
+    .swatch-input__input + .swatch-input__label:hover, .swatch-input__input:hover + .swatch-input__label {
+        outline: 0.1rem solid rgba(var(--color-foreground)  );
     }
 }

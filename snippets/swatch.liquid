@@ -13,13 +13,15 @@
 
 {%- liquid
   assign swatch_value = null
-  if swatch.image
+  if swatch_img
     assign image_url = swatch.image | image_url: width: 100
-    assign swatch_value = 'url(' | append: image_url | append: ')'
+    assign swatch_value = 'url(' | append: swatch_img | append: ')'
     assign swatch_focal_point = swatch.image.presentation.focal_point
   elsif swatch.color
     assign swatch_value = 'rgb(' | append: swatch.color.rgb | append: ')'
   endif
+
+
 -%}
 
 <span

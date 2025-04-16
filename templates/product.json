@@ -38,7 +38,7 @@
           "type": "variant_picker",
           "settings": {
             "picker_type": "button",
-            "swatch_shape": "circle"
+            "swatch_shape": "square"
           }
         },
         "quantity_selector": {
@@ -54,7 +54,10 @@
         },
         "description": {
           "type": "description",
-          "settings": {}
+          "settings": {
+            "heading": "Description",
+            "show_accordian_tab": true
+          }
         },
         "collapsible-row-0": {
           "type": "collapsible_tab",
