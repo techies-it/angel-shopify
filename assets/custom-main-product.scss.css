@@ -1,0 +1,27 @@
+.product__info-container {
+    .product-brand, .price--large {
+        font-size: 22px;
+        font-weight: 700;
+    }
+    .product__title {
+        h1 {
+            font-size: 18px;
+            font-weight: 400;
+        }
+       
+    }  
+    .accordion__title {
+        font-size: 16px;
+        font-weight: 700;
+    }
+    .accordion__content {
+        padding: 0;
+        font-size: 15px;
+    }
+    .icon-with-text--vertical .icon-with-text__item {
+        margin-bottom: 10px;
+    }
+    .product-form__input--swatch .swatch-input__input + .swatch-input__label {
+        --swatch-input--size: 8.8rem;
+    }
+}
