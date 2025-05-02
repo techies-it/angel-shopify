@@ -118,6 +118,18 @@
             "image_3": "shopify://shop_images/home.svg",
             "heading_3": "FREE shipping on orders to Spain"
           }
+        },
+        "icon_with_text_HUNt6r": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "horizontal",
+            "icon_1": "leather",
+            "heading_1": "Material: {{ product.metafields.shopify[\"footwear-material\"] | metafield_text: field: 'label' }}",
+            "icon_2": "ruler",
+            "heading_2": "Height : {{ product.metafields.shopify[\"heel-height-type\"] | metafield_text: field: 'label' }}",
+            "icon_3": "shoe",
+            "heading_3": "Toe Style :{{ product.metafields.shopify[\"toe-style\"] | metafield_text: field: 'label' }}"
+          }
         }
       },
       "block_order": [
@@ -134,7 +146,8 @@
         "collapsible-row-2",
         "collapsible-row-3",
         "share",
-        "icon_with_text_x6Bkby"
+        "icon_with_text_x6Bkby",
+        "icon_with_text_HUNt6r"
       ],
       "settings": {
         "enable_sticky_info": true,

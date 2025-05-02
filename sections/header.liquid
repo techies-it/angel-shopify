@@ -132,6 +132,7 @@
     {%- liquid
       if section.settings.menu != blank
         render 'header-drawer'
+        render 'header-dynamic-menu'
       endif
 
       if section.settings.logo_position == 'top-center' or section.settings.menu == blank

@@ -4,6 +4,7 @@
     <div class="product-media">
         {%- if card_product.featured_media -%}
         <div class="product-image">
+            <a href="{{ card_product.url }}"  alt="{{ card_product.featured_media.alt | escape }}">
             <img
                 srcset="
                   {%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
@@ -46,6 +47,7 @@
                   height="{{ card_product.media[1].height }}"
                 >
               {%- endif -%}
+              </a>
         </div>
         {%- endif -%}
         <div class="badges">

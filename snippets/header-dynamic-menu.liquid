@@ -1,0 +1,113 @@
+
+
+
+{% if collection_handle %}
+    {%- liquid
+                    assign children= collections[collection_handle].metafields.hierachy.children.value 
+                    assign children_size = collections[collection_handle].metafields.hierachy.children.value.count
+-%}
+    <div
+    id="link-{{ link.handle | escape }}"
+    class="menu-drawer__submenu has-submenu gradient motion-reduce"
+    tabindex="-1"
+  >
+    <div class="menu-drawer__inner-submenu">
+      <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+        <span class="svg-wrapper">
+          {{- 'icon-arrow.svg' | inline_asset_content -}}
+        </span>
+        {{- collections[collection_handle].metafields.hierachy.menu_title.value | default : collections[collection_handle].title  }}
+      </button>
+      <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+        {%- for child in children -%}
+          <li>
+            {%- if child == blank -%}
+                {{- child.metafields.hierachy.menu_title.value | default : child.title | link_to: child.url }}
+            {%- else -%}
+              <details id="Details-menu-drawer-{{ link.handle }}-{{ childlink.handle }}">
+                <summary
+                  id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
+                  class="menu-drawer__menu-item link link--text list-menu__item focus-inset"
+                >
+                {{- child.metafields.hierachy.menu_title.value | default : child.title }}
+                  <span class="svg-wrapper">
+                    {{- 'icon-arrow.svg' | inline_asset_content -}}
+                  </span>
+                  <span class="svg-wrapper">
+                    {{- 'icon-caret.svg' | inline_asset_content -}}
+                  </span>
+                </summary>
+                <div
+                  id="childlink-{{ childlink.handle | escape }}"
+                  class="menu-drawer__submenu has-submenu gradient motion-reduce"
+                >
+                  <button
+                    class="menu-drawer__close-button link link--text focus-inset"
+                    aria-expanded="true"
+                  >
+                    <span class="svg-wrapper">
+                      {{- 'icon-arrow.svg' | inline_asset_content -}}
+                    </span>
+                    {{- child.metafields.hierachy.menu_title.value | default : child.title }}
+                  </button>
+                  <ul
+                    class="menu-drawer__menu list-menu"
+                    role="list"
+                    tabindex="-1"
+                  >
+                    {%- for grand_child in child.metafields.hierachy.children.value  -%}
+                      <li>
+                        <a
+                      id="HeaderDrawer-{{ grand_child.handle }}"
+                      href="{{ grand_child.url }}"
+                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
+                      {% if link.current %}
+                        aria-current="page"
+                      {% endif %}
+                    >
+                        {{- grand_child.metafields.hierachy.menu_title.value | default : grand_child.title  | escape }}
+                    </a>
+                        </li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              </details>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+{% else %}
+{{ 'component-dynamic-menu.scss.css' |  asset_url |  stylesheet_tag }}
+<div class ="dynamic-menu dynamic-mega-menu dynamic-menu-collection">
+    <ul>
+        {% for collection in collections %}
+            {% if collection.metafields.hierachy.show_on_menu.value %}
+                {%- liquid
+                    assign children= collection.metafields.hierachy.children.value 
+                    assign children_size = collection.metafields.hierachy.children.value.count
+                -%}
+            <li {% if children != NULL  %}class="menu-has-children"{% endif %}> {{- collection.metafields.hierachy.menu_title.value | default : collection.title | link_to: collection.url }}
+                {% if children  %}
+                    <ul class="mega-menu {% if children_size > 0 %} four-column {% endif %}">
+                        {% for child in children %}
+                            <li> {{- child.metafields.hierachy.menu_title.value | default : child.title | link_to: child.url }} 
+                            {% assign grand_children = child.metafields.hierachy.children.value  %}
+                            {%  if grand_children != 'blank' %} 
+                                <ul>
+                                    {% for grand_child in grand_children %}
+                                        <li> {{- grand_child.metafields.hierachy.menu_title.value | default : grand_child.title | link_to: grand_child.url }} </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>  
+                {% endif %}
+            </li>
+            {% endif %}
+      {% endfor %}
+    </ul>
+</div>
+{% endif %}
