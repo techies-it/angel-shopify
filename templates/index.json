@@ -35,9 +35,9 @@
           "settings": {
             "image": "shopify://shop_images/Cleanser_banner.webp",
             "image_overlay_opacity": 0,
-            "heading": "Rebajas",
+            "heading": "New In",
             "heading_size": "hxl",
-            "subheading": "hosta-50%",
+            "subheading": "Spring Summer 24",
             "button_label": "Shop Now",
             "link": "shopify://collections/sandals",
             "button_style_secondary": false,
