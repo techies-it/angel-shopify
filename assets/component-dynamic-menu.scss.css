@@ -1,0 +1,98 @@
+.dynamic-menu {
+    width:700px;
+    display:block;
+
+    ul  {
+            margin: 0;
+            padding: 0;
+            list-style: outside none none;
+        > li {
+            position: relative;
+            display: inline-block;
+            margin-right: 50px;
+            color: #000;
+
+            ul {
+                display: none;
+            }
+            &:hover>.mega-menu-dynamic {
+                z-index: 999;
+                visibility: visible;
+                margin-top: 0;
+                opacity: 1;
+                display: block;
+                padding: 20px;
+                ul {
+                    display: block;
+                }
+            }
+        }
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+    }
+}
+.mega-menu-dynamic {
+   
+    z-index: 999;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    visibility: hidden;
+    width: 100%;
+    opacity: 0;
+    background-color: #fff;
+    -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .1);
+    box-shadow: 0 2px 8px #0000001a;
+    &.four-column {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        width: 100%;
+        padding: 30px;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        
+        >li {
+            width: 25%;
+            font-size: 15px;
+            vertical-align: top;
+
+            ul{
+                font-size: 15px;
+            }
+        }
+    }
+    > li {
+        > a {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            color: #333;
+            &:hover {
+                color: #000;
+            }
+        }
+        ul {
+            > li {
+                margin-bottom: 5px;
+                > a {
+                    font-size: 15px;
+                    color: #333;
+                    &:hover {
+                        color: #000;
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1499px) {
+    .mega-menu-dynamic.four-column {
+        width: 900px;
+    }
+}

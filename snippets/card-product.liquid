@@ -28,6 +28,11 @@
   {{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
   {{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
 {%- endunless -%}
+{% unless card_product.has_only_default_variant %}
+  {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
+  {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
+  {{ 'component-swatch.css' | asset_url | stylesheet_tag }}
+{% endunless %}
 {%- if card_product and card_product != empty -%}
   {%- liquid
     assign ratio = 1
@@ -145,6 +150,10 @@
       </div>
       <div class="card__content">
         <div class="card__information">
+          {%- if show_vendor -%}
+            <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
+            <div class="caption-with-letter-spacing light">{{ card_product.vendor }}</div>
+          {%- endif -%}
           <h3
             class="card__heading{% if card_product.featured_media or settings.card_style == 'standard' %} h5{% endif %}"
             {% if card_product.featured_media or settings.card_style == 'card' %}
@@ -161,10 +170,7 @@
             </a>
           </h3>
           <div class="card-information">
-            {%- if show_vendor -%}
-              <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
-              <div class="caption-with-letter-spacing light">{{ card_product.vendor }}</div>
-            {%- endif -%}
+          
 
             <span class="caption-large light">{{ block.settings.description | escape }}</span>
 
@@ -205,7 +211,23 @@
             {%- endif -%}
 
             {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
-            {%- if card_product.quantity_price_breaks_configured? -%}
+            {% if section.settings.enable_variant_picker %}
+            {%- for option in card_product.options_with_values -%}
+              {%- if option.name == 'Color' -%}
+
+                {%- for value in option.values -%}  
+                  <span
+                data-selected-value
+                class="dropdown-swatch"
+              >
+                {% render 'swatch', swatch: value.swatch, shape: section.settings.swatch_shape %}
+              </span>
+                {%- endfor -%}
+              
+              {%- endif -%}
+            {%- endfor -%}
+          {% endif %}
+             {%- if card_product.quantity_price_breaks_configured? -%}
               {% if card_product.variants_count == 1 and quick_add == 'bulk' %}
                 {% liquid
                   assign quantity_rule = card_product.selected_or_first_available_variant.quantity_rule
