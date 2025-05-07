@@ -9,153 +9,140 @@
  */
 {
   "sections": {
-    "slideshow_cPjgXD": {
+    "slideshow_D3bTYd": {
       "type": "slideshow",
       "blocks": {
-        "slide_7GEYEk": {
+        "slide_eAh4TE": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/img.jpg",
+            "image": "shopify://shop_images/slider1-2.jpg",
             "image_overlay_opacity": 0,
-            "heading": "Rebajas",
-            "heading_size": "hxl",
-            "subheading": "hosta - 50%",
+            "heading": "<strong>Radiant Glamour</strong>",
+            "heading_size": "hxxl",
+            "subheading": "Sparkle and Shine with Dazzling Jewelry",
             "button_label": "Shop Now",
-            "link": "shopify://collections/ankle-shoes",
+            "link": "shopify://collections/all",
             "button_style_secondary": true,
             "show_text_box": false,
-            "box_align": "middle-center",
-            "text_alignment": "center",
+            "box_align": "bottom-left",
+            "text_alignment": "left",
             "text_alignment_mobile": "center",
             "color_scheme": "scheme-4"
           }
         },
-        "slide_d9RLQt": {
+        "slide_gREUa3": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Jaden2.jpg",
+            "image": "shopify://shop_images/slider1-3.jpg",
             "image_overlay_opacity": 0,
-            "heading": "Rebajas",
-            "heading_size": "hxl",
-            "subheading": "hosta-50%",
+            "heading": "<strong>Sleek Sophistication</strong>",
+            "heading_size": "hxxl",
+            "subheading": "Levate Your Style with Modern  Accessories",
             "button_label": "Shop Now",
-            "link": "shopify://collections/sandals",
-            "button_style_secondary": false,
+            "link": "shopify://collections/all",
+            "button_style_secondary": true,
             "show_text_box": false,
-            "box_align": "middle-center",
-            "text_alignment": "center",
+            "box_align": "bottom-left",
+            "text_alignment": "left",
             "text_alignment_mobile": "center",
-            "color_scheme": "scheme-3"
+            "color_scheme": "scheme-4"
           }
         }
       },
       "block_order": [
-        "slide_7GEYEk",
-        "slide_d9RLQt"
+        "slide_eAh4TE",
+        "slide_gREUa3"
       ],
       "settings": {
         "layout": "full_bleed",
-        "slide_height": "medium",
-        "slider_visual": "dots",
+        "slide_height": "large",
+        "slider_visual": "numbers",
         "auto_rotate": false,
-        "change_slides_speed": 5,
+        "change_slides_speed": 3,
         "image_behavior": "none",
         "show_text_below": true,
         "accessibility_info": "Slideshow about our brand"
       }
     },
-    "featured_collection_fEkqxY": {
+    "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "collection": "women-shoes",
-        "products_to_show": 4,
-        "title": "Featured collection",
-        "heading_size": "h1",
+        "collection": "all",
+        "products_to_show": 8,
+        "title": "Featured products",
+        "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "enable_variant_picker": true,
-        "picker_type": "button",
-        "swatch_shape": "circle",
         "columns_desktop": 4,
         "enable_desktop_slider": false,
-        "full_width": true,
-        "show_view_all": false,
+        "full_width": false,
+        "show_view_all": true,
         "view_all_style": "solid",
-        "color_scheme": "",
+        "color_scheme": "scheme-1",
         "image_ratio": "adapt",
         "image_shape": "default",
-        "show_secondary_image": false,
-        "show_vendor": true,
+        "show_secondary_image": true,
+        "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
         "columns_mobile": "2",
         "swipe_on_mobile": false,
-        "padding_top": 36,
+        "padding_top": 44,
         "padding_bottom": 36
       }
     },
-    "banner_product_collage_WR3iAz": {
-      "type": "banner-product-collage",
-      "settings": {
-        "title": "Multicolumn",
-        "heading_size": "h1",
-        "collection": "women-shoes"
-      }
-    },
-    "image_banner": {
+    "image_banner_fWRT4H": {
       "type": "image-banner",
       "blocks": {
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "Mocasines",
-            "text_style": "subtitle"
-          }
-        },
-        "heading": {
+        "heading_NVP7xJ": {
           "type": "heading",
           "settings": {
             "heading": "Image banner",
-            "heading_size": "h0"
+            "heading_size": "h1"
           }
         },
-        "button": {
+        "text_HN68LQ": {
+          "type": "text",
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "buttons_J9UAQJ": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/moccasins",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
             "button_link_2": "",
             "button_style_secondary_2": false
           }
         }
       },
       "block_order": [
-        "text",
-        "heading",
-        "button"
+        "heading_NVP7xJ",
+        "text_HN68LQ",
+        "buttons_J9UAQJ"
       ],
       "settings": {
-        "image": "shopify://shop_images/footer-banner-img.png",
-        "image_overlay_opacity": 40,
-        "image_height": "small",
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
         "image_behavior": "none",
-        "desktop_content_position": "bottom-center",
+        "desktop_content_position": "middle-center",
         "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
         "mobile_content_alignment": "center",
-        "show_text_below": false
+        "show_text_below": true
       }
     }
   },
   "order": [
-    "slideshow_cPjgXD",
-    "featured_collection_fEkqxY",
-    "banner_product_collage_WR3iAz",
-    "image_banner"
+    "slideshow_D3bTYd",
+    "featured_collection",
+    "image_banner_fWRT4H"
   ]
 }

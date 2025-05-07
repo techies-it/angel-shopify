@@ -1,0 +1,386 @@
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign columns_mobile_int = section.settings.columns_mobile | plus: 0
+  assign show_mobile_slider = false
+  if section.settings.swipe_on_mobile and section.blocks.size > columns_mobile_int
+    assign show_mobile_slider = true
+  endif
+-%}
+
+<div class="icon-columns color-{{ section.settings.color_scheme }} gradient{% unless section.settings.background_style == 'none' %} background-{{ section.settings.background_style }}{% endunless %}"
+  style="margin-top: {{ section.settings.margin_top | default: 0 }}px; margin-bottom: {{ section.settings.margin_bottom | default: 0 }}px; 
+  max-width: {{ section.settings.width | default: 1200 }}px; margin-left: auto; margin-right: auto;"
+>
+  <div class="page-width section-{{ section.id }}-padding{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+  >
+    <slider-component class="slider-mobile-gutter">
+      <ul
+        class="icon-columns-list grid grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop{% if show_mobile_slider %} slider slider--tablet grid--peek{% endif %}"
+        id="Slider-{{ section.id }}"
+        role="list"
+      >
+        {%- for block in section.blocks -%}
+          <li
+            class="icon-column__item grid__item{% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if section.settings.column_alignment == 'center' %} center{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {{ block.shopify_attributes }}
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+              style="--animation-order: {{ forloop.index }};"
+            {% endif %}
+          >
+            <div class="icon-column__content">
+                <div class="icon-column__icon">
+                  {%- if block.settings.image != blank -%}
+                  <img
+                    src="{{ block.settings.image | image_url: width: block.settings.image_size }}"
+                    alt="{{ block.settings.image.alt | escape }}"
+                    width="{{ block.settings.image_size }}"
+                    height="{{ block.settings.image_size }}"
+                    style="max-width: {{ block.settings.image_size }}px; max-height: {{ block.settings.image_size }}px;"
+                    loading="lazy"
+                  >
+                  {%- else -%}
+                    <!-- Default SVG icon if no image is selected -->
+                       <svg width="{{ block.settings.image_size }}" height="{{ block.settings.image_size }}" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-width: {{ block.settings.image_size }}px; max-height: {{ block.settings.image_size }}px;">
+                      <rect x="6" y="10" width="36" height="28" rx="3" fill="#eee" stroke="#bbb" stroke-width="2"/>
+                      <circle cx="16" cy="20" r="3" fill="#bbb"/>
+                      <path d="M10 34l8-10 7 8 7-6 6 8" stroke="#bbb" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  {%- endif -%}
+                </div>
+                {%- if block.settings.heading != blank -%}
+                  <div class="icon-column__heading {{ block.settings.heading_size }}">
+                    {{ block.settings.heading }}
+                  </div>
+                {%- endif -%}
+              {%- if block.settings.text != blank -%}
+                <div class="icon-column__text rte">{{ block.settings.text }}</div>
+              {%- endif -%}
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      {%- if show_mobile_slider -%}
+        <div class="slider-buttons no-js-hidden">
+          <button
+            type="button"
+            class="slider-button slider-button--prev"
+            name="previous"
+            aria-label="{{ 'general.slider.previous_slide' | t }}"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/>
+            </svg>
+          </button>
+          <div class="slider-counter caption">
+            <span class="slider-counter--current">1</span>
+            <span aria-hidden="true"> / </span>
+            <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
+            <span class="slider-counter--total">{{ section.blocks.size }}</span>
+          </div>
+          <button
+            type="button"
+            class="slider-button slider-button--next"
+            name="next"
+            aria-label="{{ 'general.slider.next_slide' | t }}"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/>
+            </svg>
+          </button>
+        </div>
+      {%- endif -%}
+    </slider-component>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Feature strip",
+  "class": "section",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout Settings"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 4,
+      "label": "Number of columns on desktop"
+    },
+    {
+      "type": "range",
+      "id": "width",
+      "min": 200,
+      "max": 2000,
+      "step": 20,
+      "unit": "px",
+      "label": "Section width",
+      "default": 1040
+    },
+    {
+      "type": "select",
+      "id": "column_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        }
+      ],
+      "default": "center",
+      "label": "Column alignment"
+    },
+    {
+      "type": "select",
+      "id": "background_style",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "primary",
+          "label": "Primary"
+        }
+      ],
+      "default": "none",
+      "label": "Background style"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1 column"
+        },
+        {
+          "value": "2",
+          "label": "2 columns"
+        }
+      ],
+      "default": "1",
+      "label": "Columns on mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "swipe_on_mobile",
+      "default": false,
+      "label": "Enable swipe on mobile"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": -80,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": -80,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin bottom",
+      "default": 0
+    }
+  ],
+ "blocks": [
+  {
+    "type": "column",
+    "name": "Image Column",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "range",
+        "id": "image_size",
+        "min": 24,
+        "max": 200,
+        "step": 4,
+        "unit": "px",
+        "label": "Image size",
+        "default": 52
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Column Title"
+      },
+      {
+        "type": "select",
+        "id": "heading_size",
+        "options": [
+          {
+            "value": "h2",
+            "label": "t:sections.all.heading_size.options__1.label"
+          },
+          {
+            "value": "h1",
+            "label": "t:sections.all.heading_size.options__2.label"
+          },
+          {
+            "value": "h0",
+            "label": "t:sections.all.heading_size.options__3.label"
+          },
+          {
+            "value": "hxl",
+            "label": "t:sections.all.heading_size.options__4.label"
+          },
+          {
+            "value": "hxxl",
+            "label": "t:sections.all.heading_size.options__5.label"
+          }
+        ],
+        "default": "h2",
+        "label": "t:sections.all.heading_size.label"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "default": "<p>Add your text here</p>",
+        "label": "Text"
+      }
+    ]
+  }
+  ],
+  "presets": [
+    {
+      "name": "Feature strip",
+      "blocks": [
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+<style>
+  .icon-columns {
+    position: relative;
+  }
+
+  .icon-columns-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .icon-column__item {
+    margin-bottom: 2rem;
+  }
+
+  .icon-column__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .icon-column__icon {
+    margin-bottom: 1.5rem;
+  }
+
+  .icon-column__icon svg {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .icon-column__text {
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .slider.icon-columns-list {
+      scroll-padding-left: 1.5rem;
+    }
+
+    .icon-columns-list.slider--tablet.grid--peek {
+      margin: 0;
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .icon-column__item {
+      margin-bottom: 0;
+    }
+  }
+</style>

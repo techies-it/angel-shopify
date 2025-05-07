@@ -9,16 +9,17 @@
  */
 {
   "current": {
-    "logo": "shopify://shop_images/logo_1.png",
-    "logo_width": 230,
-    "type_header_font": "lato_n4",
+    "logo_width": 90,
+    "type_header_font": "assistant_n4",
     "heading_scale": 100,
-    "type_body_font": "lato_n4",
+    "type_body_font": "assistant_n4",
     "body_scale": 100,
-    "page_width": 1600,
+    "page_width": 1200,
     "spacing_sections": 0,
     "spacing_grid_horizontal": 8,
     "spacing_grid_vertical": 8,
+    "animations_reveal_on_scroll": true,
+    "animations_hover_elements": "none",
     "buttons_border_thickness": 1,
     "buttons_border_opacity": 100,
     "buttons_radius": 0,
@@ -102,8 +103,11 @@
     "drawer_shadow_blur": 5,
     "badge_position": "bottom left",
     "badge_corner_radius": 40,
-    "sale_badge_color_scheme": "scheme-5",
+    "sale_badge_color_scheme": "scheme-4",
     "sold_out_badge_color_scheme": "scheme-3",
+    "brand_headline": "",
+    "brand_description": "<p></p>",
+    "brand_image_width": 100,
     "social_facebook_link": "",
     "social_instagram_link": "",
     "social_youtube_link": "",
@@ -117,10 +121,11 @@
     "predictive_search_show_vendor": false,
     "predictive_search_show_price": false,
     "currency_code_enabled": true,
-    "cart_type": "drawer",
+    "cart_type": "notification",
     "show_vendor": false,
     "show_cart_note": false,
     "cart_drawer_collection": "",
+    "cart_color_scheme": "scheme-1",
     "sections": {
       "main-password-header": {
         "type": "main-password-header",
@@ -141,8 +146,8 @@
         "settings": {
           "background": "#ffffff",
           "background_gradient": "",
-          "text": "#000000",
-          "button": "#000000",
+          "text": "#121212",
+          "button": "#121212",
           "button_label": "#ffffff",
           "secondary_button_label": "#121212",
           "shadow": "#121212"
@@ -150,7 +155,7 @@
       },
       "scheme-2": {
         "settings": {
-          "background": "#fbf4e9",
+          "background": "#f3f3f3",
           "background_gradient": "",
           "text": "#121212",
           "button": "#121212",
@@ -161,9 +166,9 @@
       },
       "scheme-3": {
         "settings": {
-          "background": "#ede9a0",
+          "background": "#242833",
           "background_gradient": "",
-          "text": "#000000",
+          "text": "#ffffff",
           "button": "#ffffff",
           "button_label": "#000000",
           "secondary_button_label": "#ffffff",
@@ -172,9 +177,9 @@
       },
       "scheme-4": {
         "settings": {
-          "background": "#f5f5f5",
+          "background": "#121212",
           "background_gradient": "",
-          "text": "#000000",
+          "text": "#ffffff",
           "button": "#ffffff",
           "button_label": "#121212",
           "secondary_button_label": "#ffffff",
@@ -183,11 +188,11 @@
       },
       "scheme-5": {
         "settings": {
-          "background": "#334fb4",
+          "background": "#121212",
           "background_gradient": "",
           "text": "#ffffff",
           "button": "#ffffff",
-          "button_label": "#334fb4",
+          "button_label": "#121212",
           "secondary_button_label": "#ffffff",
           "shadow": "#121212"
         }
@@ -262,6 +267,8 @@
       "spacing_sections": 0,
       "spacing_grid_horizontal": 8,
       "spacing_grid_vertical": 8,
+      "animations_reveal_on_scroll": true,
+      "animations_hover_elements": "none",
       "buttons_border_thickness": 1,
       "buttons_border_opacity": 100,
       "buttons_radius": 0,
@@ -345,8 +352,11 @@
       "drawer_shadow_blur": 5,
       "badge_position": "bottom left",
       "badge_corner_radius": 40,
-      "sale_badge_color_scheme": "scheme-5",
+      "sale_badge_color_scheme": "scheme-4",
       "sold_out_badge_color_scheme": "scheme-3",
+      "brand_headline": "",
+      "brand_description": "<p></p>",
+      "brand_image_width": 100,
       "social_twitter_link": "",
       "social_facebook_link": "",
       "social_pinterest_link": "",
@@ -364,6 +374,7 @@
       "show_vendor": false,
       "show_cart_note": false,
       "cart_drawer_collection": "",
+      "cart_color_scheme": "scheme-1",
       "sections": {
         "main-password-header": {
           "type": "main-password-header",
@@ -379,8 +390,5 @@
         }
       }
     }
-  },
-  "platform_customizations": {
-    "custom_css": []
   }
 }

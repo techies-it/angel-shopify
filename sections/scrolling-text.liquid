@@ -1,0 +1,252 @@
+<style>
+  .section-{{ section.id }}.custom-marquee {
+    display: flex;
+    align-items: center;
+    height: {{section.settings.marquee_height}}px;
+    width: 100vw;
+    max-width: 100%;
+    overflow-x: hidden;
+    padding-top:{{ section.settings.padding_top}}px;
+    padding-bottom:{{ section.settings.padding_bottom }}px;
+    background:{{section.settings.colorBackground}};
+    color:{{section.settings.colorText}};
+  }
+  .section-{{ section.id }}.custom-marquee a {
+    color:{{section.settings.colorText}};
+    text-decoration: none;
+  }
+  .section-{{ section.id }}.custom-marquee .track {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    will-change: transform;
+    animation: marquee {{ section.settings.scroll_speed | default: 12 }}s linear infinite;
+    animation-play-state: {{ section.settings.pause_text }};  
+}
+  .section-{{ section.id }}.custom-marquee .content {
+    margin-left: 40px;
+    font-size: {{section.settings.font_size}}px;
+  }
+  @media (max-width: 749px) {
+    .section-{{ section.id }}.custom-marquee {
+      padding-top: {{ section.settings.m_padding_top }}px !important;
+      padding-bottom: {{ section.settings.m_padding_bottom }}px !important;
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+</style>
+<div class="section-{{ section.id }} custom-marquee" role="region">
+  {% if section.settings.link != blank %}
+    <a href="{{ section.settings.link }}">
+  {% endif %}
+  <div class="track">
+    {% for i in (1..4) %}
+      {% for block in section.blocks %}
+        <span class="content marquee-text {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            <img
+              src="{{ block.settings.image | image_url: width: block.settings.image_size }}"
+              alt="img"
+              width="{{ block.settings.image_size }}"
+              height="{{ block.settings.image_size }}"
+              style="height: {{ block.settings.image_size }}px; width: {{ block.settings.image_size }}px; vertical-align: middle; margin-right: 8px;"
+              loading="lazy"
+            >
+          {%- endif -%}
+          {{- block.settings.text | escape -}}
+        </span>
+      {% endfor %}
+    {% endfor %}
+  </div>
+  {% if section.settings.link != blank %}
+    </a>
+  {% endif %}
+</div>
+{% schema %}
+{
+  "name": "Marquee Text",
+  "settings": [
+    {
+      "type": "color",
+      "id": "colorBackground",
+      "label": "Background color",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "colorText",
+      "label": "Text color",
+      "default": "#fff"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "range",
+      "id": "marquee_height",
+      "min": 24,
+      "max": 200,
+      "step": 2,
+      "default": 46,
+      "label": "Marquee height"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "min": 4,
+      "max": 30,
+      "step": 1,
+      "default": 12,
+      "label": "Scroll speed (sec)"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 8,
+      "max": 100,
+      "step": 2,
+      "default": 24,
+      "label": "Font size"
+    },
+    {
+      "type": "select",
+      "id": "pause_text",
+      "options": [
+        {
+          "value": "running",
+          "label": "Running"
+        },
+        {
+          "value": "paused",
+          "label": "Paused"
+        }
+      ],
+      "default": "running",
+      "label": "Pause text on hover"
+    },
+    {
+        "type":"header",
+        "content":"Padding for desktop"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Top",
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Bottom",
+        "default": 16
+      },
+      {
+        "type":"header",
+        "content":"Padding for mobile"
+      },
+      {
+        "type": "range",
+        "id": "m_padding_top",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Top",
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "m_padding_bottom",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding Bottom",
+        "default": 16
+    }  
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "limit": 20,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+        },
+        {
+            "type": "range",
+            "id": "image_size",
+            "min": 24,
+            "max": 200,
+            "step": 2,
+            "unit": "px",
+            "label": "Image size",
+            "default": 24,
+        },
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "default": "Welcome To Store",
+          "label": "Label"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            {
+              "value": "body",
+              "label": "t:sections.image-banner.blocks.text.settings.text_style.options__1.label"
+            },
+            {
+              "value": "subtitle",
+              "label": "t:sections.image-banner.blocks.text.settings.text_style.options__2.label"
+            },
+            {
+              "value": "caption-with-letter-spacing",
+              "label": "t:sections.image-banner.blocks.text.settings.text_style.options__3.label"
+            }
+          ],
+          "default": "body",
+          "label": "Text style"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee-Txt",
+      "blocks": [
+        {
+          "type": "text"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

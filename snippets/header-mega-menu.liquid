@@ -5,7 +5,7 @@
   {% render 'header-mega-menu' %}
 {% endcomment %}
 
-<nav class="header__inline-menu mega">
+<nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
       <li>
@@ -30,7 +30,6 @@
                 class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
                 tabindex="-1"
               >
-            
                 <ul
                   class="mega-menu__list page-width{% if link.levels == 1 %} mega-menu__list--condensed{% endif %}"
                   role="list"
@@ -72,71 +71,6 @@
             </details>
           </header-menu>
         {%- else -%}
-        {% if collections[link.handle].metafields.hierachy.children.value.count > 0 %}
-          <header-menu>
-            <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
-              <summary
-                id="HeaderMenu-{{ link.handle }}"
-                class="header__menu-item list-menu__item link focus-inset"
-              >
-                <span
-                  {%- if link.child_active %}
-                    class="header__active-menu-item"
-                  {% endif %}
-                >
-                  {{- link.title | escape -}}
-                </span>
-                {{- 'icon-caret.svg' | inline_asset_content -}}
-              </summary>
-              <div
-                id="MegaMenu-Content-{{ forloop.index }}"
-                class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
-                tabindex="-1"
-              >
-            
-          {%- liquid
-          assign children= collections[link.handle].metafields.hierachy.children.value 
-          assign children_size = collections[link.handle].metafields.hierachy.children.value.count
-        -%}
-        <ul>
-        {%- for child in children -%}
-          <li>
-            <a
-              id="HeaderMenu-{{ link.handle }}-{{ child.handle }}"
-              href="{{ child.url }}"
-              class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"
-              {% if childlink.current %}
-                aria-current="page"
-              {% endif %}
-            >
-            {{- child.metafields.hierachy.menu_title.value | default : child.title  }}
-            </a>
-            {%- if child != blank -%}
-              <ul class="list-unstyled" role="list">
-                {%- for grand_child in child.metafields.hierachy.children.value  -%}
-                  <li>
-                    <a
-                      id="HeaderMenu-{{ link.handle }}-{{ child.handle }}-{{ grand_child.handle }}"
-                      href="{{ grand_child.url }}"
-                      class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"
-                      {% if grandchildlink.current %}
-                        aria-current="page"
-                      {% endif %}
-                    >
-                    {{- grand_child.metafields.hierachy.menu_title.value | default : grand_child.title  | escape }}
-                    </a>
-                  </li>
-                {%- endfor -%}
-              </ul>
-              {% endif %}
-          </li>
-        {%- endfor -%}
-      </ul>
-
-      </div>
-      </details>
-    </header-menu>
-    {% else %}
           <a
             id="HeaderMenu-{{ link.handle }}"
             href="{{ link.url }}"
@@ -154,7 +88,6 @@
             </span>
           </a>
         {%- endif -%}
-      {% endif %}
       </li>
     {%- endfor -%}
   </ul>
