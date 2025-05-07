@@ -27,7 +27,7 @@
             "box_align": "middle-center",
             "text_alignment": "center",
             "text_alignment_mobile": "center",
-            "color_scheme": "scheme-4"
+            "color_scheme": "scheme-a99a2589-61c6-491c-840f-69843672afa6"
           }
         },
         "slide_d9RLQt": {
@@ -67,7 +67,7 @@
     "featured_collection_fEkqxY": {
       "type": "featured-collection",
       "settings": {
-        "collection": "women-shoes",
+        "collection": "women",
         "products_to_show": 4,
         "title": "Featured collection",
         "heading_size": "h1",
@@ -100,7 +100,7 @@
       "settings": {
         "title": "Multicolumn",
         "heading_size": "h1",
-        "collection": "women-shoes"
+        "collection": "women"
       }
     },
     "image_banner": {
@@ -145,7 +145,7 @@
         "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
         "show_text_box": false,
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-a99a2589-61c6-491c-840f-69843672afa6",
         "stack_images_on_mobile": false,
         "mobile_content_alignment": "center",
         "show_text_below": false
