@@ -11,24 +11,182 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "image_with_text_VcQN8z": {
+      "type": "image-with-text",
+      "blocks": {
+        "text_XAyVzq": {
+          "type": "text",
+          "settings": {
+            "text": "<p>QUESTIONS?</p>",
+            "text_style": "body"
+          }
+        },
+        "heading_bX49Yt": {
+          "type": "heading",
+          "settings": {
+            "heading": "We're here to help with sizing, stylingand anything else, 3 Year Warranty, Extended 90 Day Returns, Expedited Shipping",
+            "heading_size": "h1"
+          }
+        },
+        "button_xXUP7g": {
+          "type": "button",
+          "settings": {
+            "button_label": "READ FAQS",
+            "button_link": "shopify://pages/faq",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": [
+        "text_XAyVzq",
+        "heading_bX49Yt",
+        "button_xXUP7g"
+      ],
+      "custom_css": [
+        "a.button.button--primary:hover {color: #fff;}",
+        ".image-with-text__heading {font-size: 36px; line-height: 50px;}"
+      ],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/s12.jpg",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "zoom-in",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "",
+        "color_scheme": "",
+        "padding_top": 0,
         "padding_bottom": 36
       }
     },
     "form": {
       "type": "contact-form",
       "settings": {
-        "heading": "",
+        "heading": "Got Any Questions?",
         "heading_size": "h1",
         "color_scheme": "scheme-1",
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "multicolumn_A7KzdQ": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_hqwGz7": {
+          "type": "column",
+          "settings": {
+            "title": "Flawless Co.",
+            "text": "<p>1234 Elm Street, Suite 567, Springfield Illinois 62704, United States</p>",
+            "link_label": "Get Directions",
+            "link": ""
+          }
+        },
+        "column_TAKCcM": {
+          "type": "column",
+          "settings": {
+            "title": "Flawless Skincare",
+            "text": "<p>789 Maple Avenue, Unit 321, Greenville California 90210, United States</p>",
+            "link_label": "Get direction",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_hqwGz7",
+        "column_TAKCcM"
+      ],
+      "custom_css": [
+        ".multicolumn.background-primary .multicolumn-card {background: #ede9a0; padding: 30px;}",
+        ".link.animate-arrow {background: #000; color: #fff; padding: 1rem 4rem; text-transform: uppercase;}",
+        ".link.animate-arrow span {display: none;}",
+        ".multicolumn-card__info h3 {font-size: 30px;}"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 2,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collapsible_content_KYiTV8": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_bFGnPH": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How long will shipping take?",
+            "icon": "none",
+            "row_content": "<p>All orders are shipped within 12-36 hours from our warehouse in Bellingham WA.  Delivery times will depend on your shipping option but all orders are tracked from our facility to your door. </p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_hkL9bK": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How do I know if my order is confirmed?",
+            "icon": "none",
+            "row_content": "<p>This is an example of a response that you might give. It's good to be as thorough as possible in responses as that has a tendency to improve trust overall.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_pg7LwT": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can I change my shipping address after my order is placed?",
+            "icon": "none",
+            "row_content": "<p>This is an example of a response that you might give. It's good to be as thorough as possible in responses as that has a tendency to improve trust overall.</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_bFGnPH",
+        "collapsible_row_hkL9bK",
+        "collapsible_row_pg7LwT"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "Below are some of are common questions",
+        "heading": "FAQs",
+        "heading_size": "h0",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "",
+        "color_scheme": "",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
     "main",
-    "form"
+    "image_with_text_VcQN8z",
+    "form",
+    "multicolumn_A7KzdQ",
+    "collapsible_content_KYiTV8"
   ]
 }
