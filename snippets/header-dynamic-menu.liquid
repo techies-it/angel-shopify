@@ -90,7 +90,7 @@
                 -%}
             <li {% if children != NULL  %}class="menu-has-children"{% endif %}> {{- collection.metafields.hierachy.menu_title.value | default : collection.title | link_to: collection.url }}
                 {% if children  %}
-                    <ul class="mega-menu {% if children_size > 0 %} four-column {% endif %}">
+                    <ul class="mega-menu-dynamic {% if children_size > 0 %} four-column {% endif %}">
                         {% for child in children %}
                             <li> {{- child.metafields.hierachy.menu_title.value | default : child.title | link_to: child.url }} 
                             {% assign grand_children = child.metafields.hierachy.children.value  %}

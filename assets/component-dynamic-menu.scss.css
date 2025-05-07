@@ -15,7 +15,7 @@
             ul {
                 display: none;
             }
-            &:hover>.mega-menu {
+            &:hover>.mega-menu-dynamic {
                 z-index: 999;
                 visibility: visible;
                 margin-top: 0;
@@ -33,7 +33,7 @@
         }
     }
 }
-.mega-menu {
+.mega-menu-dynamic {
    
     z-index: 999;
     position: absolute;
@@ -92,7 +92,7 @@
     }
 }
 @media only screen and (min-width: 1200px) and (max-width: 1499px) {
-    .mega-menu.four-column {
+    .mega-menu-dynamic.four-column {
         width: 900px;
     }
 }
