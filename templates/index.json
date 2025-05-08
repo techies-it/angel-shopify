@@ -95,6 +95,48 @@
         "padding_bottom": 36
       }
     },
+    "countdown_timer_CPUDFY": {
+      "type": "countdown-timer",
+      "blocks": {
+        "banner_qHnmfg": {
+          "type": "banner",
+          "settings": {
+            "background_type": "image",
+            "background_color": "#222222",
+            "image_desktop": "shopify://shop_images/theme_cover_image.jpg",
+            "content_countdown_layout": "centered",
+            "overlay_position": "justify-center items-center",
+            "overlay_text_align": "text-center",
+            "mob_center_text": false,
+            "subheading": "LIMITED TIME ONLY",
+            "heading": "SUPER SALE UPTO 40% OFF",
+            "heading_size": "h0",
+            "text": "<p>Shop our selection of exclusive handbags and bagpacks at reduced price during the super sale.</p>",
+            "button_1_label": "SHOP NOW",
+            "button_1_link": "shopify://collections/boots",
+            "color_scheme": "scheme-1",
+            "remove_bg": true,
+            "countdown_show": true,
+            "countdown_end_date": "2025-05-10",
+            "countdown_end_time": "12:00",
+            "countdown_hide_on_end": false,
+            "countdown_hide_days": false,
+            "count_color": "#ffffff",
+            "bg_color": "#070707"
+          }
+        }
+      },
+      "block_order": [
+        "banner_qHnmfg"
+      ],
+      "name": "Countdown banner",
+      "settings": {
+        "height_mode": "auto",
+        "fixed_height_desktop": 600,
+        "fixed_height_mobile": 350,
+        "mobile_stacked": false
+      }
+    },
     "banner_product_collage_WR3iAz": {
       "type": "banner-product-collage",
       "settings": {
@@ -150,12 +192,42 @@
         "mobile_content_alignment": "center",
         "show_text_below": false
       }
+    },
+    "pinpointer_image_pW7QCQ": {
+      "type": "pinpointer-image",
+      "blocks": {
+        "pinpoint_4bXHyr": {
+          "type": "pinpoint",
+          "settings": {
+            "product": "beatrice-black",
+            "position_top": 71,
+            "position_left": 46
+          }
+        }
+      },
+      "block_order": [
+        "pinpoint_4bXHyr"
+      ],
+      "name": "Interactive Image with Pinpoints",
+      "settings": {
+        "main_image": "shopify://shop_images/MAelle_B2.jpg",
+        "image_position": "right",
+        "background_color": "#ffffff",
+        "font_color": "#000000",
+        "font_size": 16,
+        "left_title": "Product Description",
+        "left_description": "Add your product description here.",
+        "buy_now_button_text": "Buy Now",
+        "buy_now_button_link": ""
+      }
     }
   },
   "order": [
     "slideshow_cPjgXD",
     "featured_collection_fEkqxY",
+    "countdown_timer_CPUDFY",
     "banner_product_collage_WR3iAz",
-    "image_banner"
+    "image_banner",
+    "pinpointer_image_pW7QCQ"
   ]
 }

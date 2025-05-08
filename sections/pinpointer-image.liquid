@@ -1,0 +1,171 @@
+{{ 'component-pinpoint.css' | asset_url | stylesheet_tag }}
+
+<div class="split-content-container" style="
+  background-color: {{ section.settings.background_color }};
+  font-family: {{ section.settings.font_family }};
+  color: {{ section.settings.font_color }};
+  font-size: {{ section.settings.font_size }}px;
+">
+ <div class="left-content">
+    <h2 class="section-title">{{ section.settings.left_title }}</h2>
+    <p class="section-description">{{ section.settings.left_description }}</p>
+   {% if section.settings.buy_now_button_text %}
+  <a href="{{ section.settings.buy_now_button_link }}" class="btn btn-primary">
+    {{ section.settings.buy_now_button_text }}
+  </a>
+{% endif %}
+
+  </div>
+  <div class="right-content">
+    <div class="product-cont">
+      {% if section.settings.main_image %}
+        <img 
+          src="{{ section.settings.main_image | image_url: width: 1200 }}" 
+          alt="Interactive Image"
+          width="1200" 
+          height="auto"
+        />
+      {% endif %}
+
+    {% for block in section.blocks %}
+      {% assign product = block.settings.product %}
+      {% if product != blank %}
+        <div 
+          class="ripple"
+          type="button"
+          style="top: {{ block.settings.position_top }}%; left: {{ block.settings.position_left }}%;"
+          onclick="openPinpointModal(this)"
+          data-title="{{ product.title | escape }}"
+          data-image="{{ product.featured_image | image_url: width: 400 | default: '' }}"
+          data-link="{{ product.url }}">
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="pinpointModal" class="modal">
+  <div class="modal-overlay" onclick="closePinpointModal()"></div>
+  <div class="modal-content">
+    <button class="modal-close" onclick="closePinpointModal()">&times;</button>
+    <img id="modalImage" src="" alt="Product Image" class="w-full h-auto mb-4" width="400" height="400">
+    <h3 id="modalTitle" class="text-lg font-bold mb-2"></h3>
+  <div class="modal-button-wrapper">
+  <a id="modalLink" href="#" class="modal-buy-button">Buy Now</a>
+</div>
+
+  </div>
+</div>
+
+
+<script src="{{ 'component-pinpoint.js' | asset_url }}" defer="defer"></script>
+{% schema %}
+{
+  "name": "Inter",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Upload Background Image"
+    },
+    {
+  "type": "select",
+  "id": "image_position",
+  "label": "Image Position",
+  "options": [
+    { "value": "left", "label": "Left" },
+    { "value": "right", "label": "Right" }
+  ],
+  "default": "left"
+},
+{
+  "type": "color",
+  "id": "background_color",
+  "label": "Main Content Background Color",
+  "default": "#ffffff"
+},
+{
+  "type": "color",
+  "id": "font_color",
+  "label": "Font Color",
+  "default": "#000000"
+},
+{
+  "type": "range",
+  "id": "font_size",
+  "label": "Font Size (px)",
+  "min": 12,
+  "max": 36,
+  "step": 1,
+  "default": 16
+},
+    {
+      "type": "text",
+      "id": "left_title",
+      "label": "Left Section Title",
+      "default": "Product Description"
+    },
+    {
+      "type": "textarea",
+      "id": "left_description",
+      "label": "Left Section Description",
+      "default": "Add your product description here."
+    },
+    {
+  "type": "text",
+  "id": "buy_now_button_text",
+  "label": "Buy Now Button Text",
+  "default": "Buy Now"
+},
+{
+  "type": "url",
+  "id": "buy_now_button_link",
+  "label": "Buy Now Button Link"
+  
+}
+  ],
+  "blocks": [
+    {
+      "type": "pinpoint",
+      "name": "Pinpoint",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "range",
+          "id": "position_top",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Top Position (%)",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "position_left",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "Left Position (%)",
+          "default": 50
+        },
+        
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Interactive Image with Pinpoints",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

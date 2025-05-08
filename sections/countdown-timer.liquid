@@ -1,0 +1,700 @@
+{%- for block in section.blocks -%}
+  {%- assign img = block.settings.image_desktop -%}
+  {%- assign overlay_parts = block.settings.overlay_position | split: ' ' -%}
+  {%- assign justify = overlay_parts[0] | replace: 'justify-', '' -%}
+  {%- assign align = overlay_parts[1] | replace: 'items-', '' -%}
+
+  {%- style -%}
+        #{{ section.id }}-banner {
+        position: relative;
+         width: 100%;
+       overflow: hidden;
+       display: flex;
+      min-height: {{ section.settings.fixed_height_desktop | default: 400 }}px;
+       justify-content: {{ justify }};
+       align-items: {{ align }};
+      {% if section.settings.color_scheme == 'white' or section.settings.color_scheme == 'default' %}
+      background: #fff;
+       {% else %}
+        background: var(--color-bg, #f5f5f5);
+       {% endif %}
+        }
+        @media (max-width: 749px) {
+        #{{ section.id }}-banner {
+        min-height: {{ section.settings.fixed_height_mobile | default: 250 }}px;
+       }
+        }
+       #{{ section.id }}-banner .banner-img {
+        width: 100%           ;
+        height: 100%;
+        object-fit: cover;
+       position: absolute;
+       top: 0; left: 0;
+        z-index: 1;
+      }
+      #{{ section.id }}-banner .banner-overlay {
+        position: relative;
+        z-index: 2;
+        max-width: 1110px;
+        padding: 2rem 1rem;
+        display : flex;
+        flex-direction: column;
+      {% if block.settings.remove_bg %}
+      background: var(--color-background, #222);
+      {% endif %}
+      }
+      #{{ section.id }}-banner .banner-overlay.text-start {
+        text-align: left;
+      }
+      #{{ section.id }}-banner .banner-overlay.text-center {
+        text-align: center;
+      }
+      #{{ section.id }}-banner .banner-overlay.text-end {
+        text-align: right;
+      }
+      #{{ section.id }}-banner .banner-heading {
+        font-size: {{ block.settings.heading_size }};
+        font-weight: bold;
+        {% if block.settings.color_scheme != blank %}
+          color: var(--color-foreground, #222);
+        {% elsif block.settings.count_color != blank %}
+          color: {{ block.settings.count_color }};
+        {% endif %}
+        margin-bottom: 1rem;
+      }
+      #{{ section.id }}-banner .banner-subheading {
+        font-size: 1.8rem;
+        {% if block.settings.color_scheme != blank %}
+          color: var(--color-foreground, #222);
+        {% elsif block.settings.count_color != blank %}
+          color: {{ block.settings.count_color }};
+        {% endif %}
+        margin-bottom: 0.5rem;
+      }
+      #{{ section.id }}-banner .banner-text p{
+        font-size: 1.2rem;
+        {% if block.settings.color_scheme != blank %}
+          color: var(--color-foreground, #222);
+        {% elsif block.settings.count_color != blank %}
+          color: {{ block.settings.count_color }};
+        {% endif %}
+        margin-bottom: 0.5rem;
+      }
+      #{{ section.id }}-banner .banner-countdown {
+        margin: 1.5rem 0;
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+      }
+      #{{ section.id }}-banner .countdown__number {
+        {% if block.settings.bg_color != blank %}
+          background: {{ block.settings.bg_color }};
+        {% endif %}
+        color: {{ block.settings.count_color }};
+        padding: 0.5em 1em;
+        border-radius: 0.5em;
+        font-size: 3rem;
+        min-width: 2.5em;
+        text-align: center;
+      }
+      #{{ section.id }}-banner .banner-btn {
+        margin-top: 1rem;
+        padding: 0.75em 2em;
+        font-size: 1rem;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background 0.2s, color 0.2s;
+      }
+      .color-scheme-3 .button--primary {
+        background: rgb(var(--color-button));
+        color: rgb(var(--color-button-text));
+        box-shadow: 0 2px 8px 0 rgb(var(--color-shadow), 0.15);
+      }
+      .color-scheme-3 .button--secondary {
+        background: rgb(var(--color-secondary-button));
+        color: rgb(var(--color-secondary-button-text));
+        border: 1px solid rgb(var(--color-button));
+      }
+      #{{ section.id }}-banner .banner-btn a{
+        text-decoration: none;
+      }
+      #{{ section.id }}-banner .banner-overlay.text-end .banner__buttons {
+        margin: 1rem 0 0 auto;
+      }
+      #{{ section.id }}-banner .banner-overlay.text-center .banner__buttons {
+        margin: 1rem auto 0 auto;
+      }
+      #{{ section.id }}-banner .banner-overlay.text-start .banner__buttons {
+        margin: 1rem auto 0 0;
+      }
+      #{{ section.id }}-banner .banner-btn:hover {
+        background: #222;
+        color: #fff;
+      }
+        #{{ section.id }}-banner .banner-overlay.layout-split {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 4rem;
+      }
+      #{{ section.id }}-banner .banner-overlay.layout-split .banner-content-side {
+        flex: 1 1 0;
+        min-width: 0;
+      }
+      #{{ section.id }}-banner .banner-overlay.layout-split .banner-countdown-side {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+      @media (max-width: 749px) {
+        #{{ section.id }}-banner .banner-overlay.layout-split {
+          flex-direction: column;
+          gap: 1rem;
+          align-items: stretch;
+        }
+        #{{ section.id }}-banner .banner-overlay.layout-split .banner-countdown-side {
+          justify-content: center;
+        }
+      }
+      #{{ section.id }}-banner countdown-timer{
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        justify-content: center;
+        align-items: flex-end;
+        margin: 1.5rem 0;
+      }
+
+    #{{ section.id }}-banner .countdown__number {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.5em 1em;
+      border-radius: 0.5em;
+      font-size: 3rem;
+      min-width: 2.5em;
+      text-align: center;
+    }
+    #{{ section.id }}-banner .countdown__value {
+      font-size: 3.2rem;
+      line-height: 1;
+    }
+    #{{ section.id }}-banner .countdown__label {
+      font-size: 1rem;
+    }
+
+    #{{ section.id }}-banner .countdown__colon {
+      font-size: 2.5rem;
+      color: #fff;
+      align-self: flex-end;
+      margin-bottom: 0.5em;
+    }
+    @media (max-width: 749px) {
+      {%- if block.settings.image_mobile != blank -%}
+            #{{ section.id }}-banner .banner-img {
+              content: url('{{ block.settings.image_mobile | image_url: width: 800 }}');
+            }
+      {%- endif -%}
+      #{{ section.id }}-banner .banner-overlay {
+        align-items: center !important;
+        text-align: center !important;
+      }
+      #{{ section.id }}-banner .banner-overlay .banner-btn {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: block;
+      }
+      #{{ section.id }}-banner .banner-overlay.layout-split {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 1rem;
+      }
+      #{{ section.id }}-banner .banner-overlay.layout-split .banner-content-side,
+      #{{ section.id }}-banner .banner-overlay.layout-split .banner-countdown-side {
+        width: 100%;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+        display: flex;
+        flex-direction: column;
+      }
+      #{{ section.id }}-banner .banner-heading {
+        font-size: 1.7rem;
+      }
+      #{{ section.id }}-banner .banner-subheading {
+        font-size: 1.1rem;
+      }
+      #{{ section.id }}-banner .banner-text p {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+      }
+      #{{ section.id }}-banner .banner-btn {
+        font-size: 0.95rem;
+        padding: 0.5em 1.2em;
+      }
+      #{{ section.id }}-banner .banner-countdown {
+        gap: 0.5rem;
+      }
+      #{{ section.id }}-banner .countdown__number {
+        font-size: 2.3rem;
+        min-width: 1.5em;
+        padding: 0.3em 0.5em;
+        }
+        #{{ section.id }}-banner .countdown__value {
+          font-size: 1.3rem;
+        }
+        #{{ section.id }}-banner .countdown__colon {
+          font-size: 1.2rem;
+          margin-bottom: 0.2em;
+        }
+      }
+  {%- endstyle -%}
+
+  <!-- Load the JS file -->
+  <script src="{{ 'countdown-timer.js' | asset_url }}" defer="defer"></script>
+
+  <div
+    id="{{ section.id }}-banner"
+    style="
+       {% if block.settings.background_type == 'color' %}
+        background: {{ block.settings.background_color }};
+      {% elsif block.settings.background_type == 'image' and img != blank %}
+        /* No background color, image will be shown */
+      {% else %}
+        background: black; /* Light blue fallback */
+      {% endif %}
+    "
+  >
+    {%- if block.settings.background_type != 'color' and img != blank -%}
+      <img
+        class="banner-img"
+        src="{{ img | image_url: width: 1600 }}"
+        alt="{{ block.settings.heading | escape }}"
+        width="1600"
+        height="auto"
+      >
+    {%- endif -%}
+    <div class="banner-overlay {{ block.settings.overlay_text_align }} color-{{ block.settings.color_scheme }} layout-{{ block.settings.content_countdown_layout }}">
+      {%- if block.settings.content_countdown_layout == 'split' -%}
+        <div class="banner-content-side">
+          {%- if block.settings.subheading != blank -%}
+            <div class="banner-subheading">{{ block.settings.subheading }}</div>
+          {%- endif -%}
+          {%- if block.settings.heading != blank -%}
+            <div class="banner-heading {{ block.settings.heading_size }}">{{ block.settings.heading }}</div>
+          {%- endif -%}
+          {%- if block.settings.text != blank -%}
+            <div class="banner-text rte">{{ block.settings.text }}</div>
+          {%- endif -%}
+          {%- if block.settings.button_1_label != blank or block.settings.button_1_link != blank -%}
+            <div class="banner__buttons">
+              <a
+                {% if block.settings.button_1_link %}
+                  href="{{ block.settings.button_1_link }}"
+                {% else %}
+                  role="link" aria-disabled="true"
+                {% endif %}
+                class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+              >
+                {{- block.settings.button_1_label | escape -}}
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
+        <div class="banner-countdown-side">
+          {%- if block.settings.countdown_show and block.settings.countdown_end_date != blank -%}
+            <div class="banner-countdown">
+              <countdown-timer
+                data-end-date="{{ block.settings.countdown_end_date }}{% if block.settings.countdown_end_time != blank %}T{{ block.settings.countdown_end_time }}{% endif %}"
+                data-hide-on-end="{{ block.settings.countdown_hide_on_end }}"
+                data-hide-days="{{ block.settings.countdown_hide_days }}"
+              >
+                {%- unless block.settings.countdown_hide_days -%}
+                <span class="countdown__number js-days"><span class="countdown__value">00</span></span>
+                 <span class="countdown__colon">:</span>
+                 {% endunless -%}
+                 <span class="countdown__number js-hours"><span class="countdown__value">00</span></span>
+                  <span class="countdown__colon">:</span>
+                  <span class="countdown__number js-mins"><span class="countdown__value">00</span></span>
+                  <span class="countdown__colon">:</span>
+                  <span class="countdown__number js-secs"><span class="countdown__value">00</span></span>
+              </countdown-timer>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- else -%}
+        {%- if block.settings.subheading != blank -%}
+          <div class="banner-subheading">{{ block.settings.subheading }}</div>
+        {%- endif -%}
+        {%- if block.settings.heading != blank -%}
+          <div class="banner-heading {{ block.settings.heading_size }}">{{ block.settings.heading }}</div>
+        {%- endif -%}
+        {%- if block.settings.text != blank -%}
+          <div class="banner-text rte">{{ block.settings.text }}</div>
+        {%- endif -%}
+        {%- if block.settings.countdown_show and block.settings.countdown_end_date != blank -%}
+          <div class="banner-countdown">
+            <countdown-timer
+              data-end-date="{{ block.settings.countdown_end_date }}{% if block.settings.countdown_end_time != blank %}T{{ block.settings.countdown_end_time }}{% endif %}"
+              data-hide-on-end="{{ block.settings.countdown_hide_on_end }}"
+              data-hide-days="{{ block.settings.countdown_hide_days }}"
+            >
+              {%- unless block.settings.countdown_hide_days -%}
+                <span class="countdown__number js-days"><span class="countdown__value">00</span></span>
+                 <span class="countdown__colon">:</span>
+                 {% endunless -%}
+                <span class="countdown__number js-hours"><span class="countdown__value">00</span></span>
+                <span class="countdown__colon">:</span>
+                <span class="countdown__number js-mins"><span class="countdown__value">00</span></span>
+                <span class="countdown__colon">:</span>
+                <span class="countdown__number js-secs"><span class="countdown__value">00</span></span>
+            </countdown-timer>
+          </div>
+        {%- endif -%}
+        {%- if block.settings.button_1_label != blank or block.settings.button_1_link != blank -%}
+          <div class="banner__buttons">
+            <a
+              {% if block.settings.button_1_link %}
+                href="{{ block.settings.button_1_link }}"
+              {% else %}
+                role="link" aria-disabled="true"
+              {% endif %}
+              class="button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}"
+            >
+              {{- block.settings.button_1_label | escape -}}
+            </a>
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </div>
+{%- endfor -%}
+
+{% schema %}
+{
+  "name": "t:sections.countdown_timer_banner.name",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "height_mode",
+      "label": "t:sections.countdown_timer_banner.height_mode.label",
+      "options": [
+        {
+          "value": "auto",
+          "label": "t:sections.countdown_timer_banner.height_mode.options__1.label" 
+        },
+        {
+          "value": "fixed",
+          "label": "t:sections.countdown_timer_banner.height_mode.options__2.label"
+        },
+        {
+          "value": "screen",
+          "label": "t:sections.countdown_timer_banner.height_mode.options__3.label"
+        }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "range",
+      "id": "fixed_height_desktop",
+      "min": 400,
+      "max": 750,
+      "step": 10,
+      "unit": "px",
+      "label": "t:sections.countdown_timer_banner.fixed_height_desktop.label",
+      "default": 600
+    },
+    {
+      "type": "range",
+      "id": "fixed_height_mobile",
+      "min": 250,
+      "max": 500,
+      "step": 10,
+      "unit": "px",
+      "label": "t:sections.countdown_timer_banner.fixed_height_mobile.label",
+      "default": 350
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_stacked",
+      "label": "t:sections.countdown_timer_banner.mobile_stacked.label",
+      "info": "t:sections.countdown_timer_banner.mobile_stacked.info",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "banner",
+      "name": "t:sections.countdown_timer_banner.blocks.name",
+      "settings": [
+        {
+          "type": "select",
+          "id": "background_type",
+          "label": "t:sections.countdown_timer_banner.blocks.background_type.label",
+          "options": [
+            { "value": "image", "label": "t:sections.countdown_timer_banner.blocks.background_type.options__1.label" },
+            { "value": "color", "label": "t:sections.countdown_timer_banner.blocks.background_type.options__2.label" }
+          ],
+          "default": "image"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "t:sections.countdown_timer_banner.blocks.background_color.label",
+          "default": "#222222"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_desktop",
+          "label": "t:sections.countdown_timer_banner.blocks.image_desktop.label",
+          "info": "t:sections.countdown_timer_banner.blocks.image_desktop.info",
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "t:sections.countdown_timer_banner.blocks.image_mobile.label",
+          "info": "t:sections.countdown_timer_banner.blocks.image_mobile.info"
+        },
+        {
+          "type": "select",
+          "id": "content_countdown_layout",
+          "label": "t:sections.countdown_timer_banner.blocks.content_countdown_layout.label",
+          "options": [
+            {
+              "value": "centered",
+              "label": "t:sections.countdown_timer_banner.blocks.content_countdown_layout.options__1.label"
+            },
+            {
+              "value": "split",
+              "label": "t:sections.countdown_timer_banner.blocks.content_countdown_layout.options__2.label"
+            }
+          ],
+          "default": "centered"
+        },
+        {
+          "type": "header",
+          "content": "Text overlay"
+        },
+        {
+          "type": "select",
+          "id": "overlay_position",
+          "label": "t:sections.countdown_timer_banner.blocks.overlay_position.label",
+          "options": [
+            {
+              "value": "justify-start items-start",
+              "label": "t:sections.countdown_timer_banner.blocks.overlay_position.options__1.label"
+            },
+            {
+              "value": "justify-center items-start",
+              "label": "t:sections.countdown_timer_banner.blocks.overlay_position.options__2.label"
+            },
+            {
+              "value": "justify-end items-start",
+              "label": "t:sections.countdown_timer_banner.blocks.overlay_position.options__3.label"
+            },
+            {
+              "value": "justify-start items-center",
+              "label": "t:sections.countdown_timer_banner.blocks.overlay_position.options__4.label"
+            },
+            {
+              "value": "justify-center items-center",
+              "label": "t:sections.countdown_timer_banner.blocks.overlay_position.options__5.label"
+            },
+            {
+              "value": "justify-end items-center",
+              "label": "t:sections.countdown_timer_banner.blocks.overlay_position.options__6.label"
+            },
+            {
+              "value": "justify-start items-end",
+              "label": "t:sections.countdown_timer_banner.blocks.overlay_position.options__7.label"
+            },
+            {
+              "value": "justify-center items-end",
+              "label": "t:sections.countdown_timer_banner.blocks.overlay_position.options__8.label"
+            },
+            {
+              "value": "justify-end items-end",
+              "label": "t:sections.countdown_timer_banner.blocks.overlay_position.options__9.label"
+            }
+          ],
+          "default": "justify-center items-center"
+        },
+        {
+          "type": "select",
+          "id": "overlay_text_align",
+          "label": "t:sections.countdown_timer_banner.blocks.overlay_text_align.label",
+          "options": [
+            {
+              "value": "text-start",
+              "label": "t:sections.countdown_timer_banner.blocks.overlay_text_align.options__1.label"
+            },
+            {
+              "value": "text-center",
+              "label": "t:sections.countdown_timer_banner.blocks.overlay_text_align.options__2.label"
+            },
+            {
+              "value": "text-end",
+              "label": "t:sections.countdown_timer_banner.blocks.overlay_text_align.options__3.label"
+            }
+          ],
+          "default": "text-center"
+        },
+
+        {
+          "type": "checkbox",
+          "id": "mob_center_text",
+          "label": "t:sections.countdown_timer_banner.blocks.mob_center_text.label",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "t:sections.countdown_timer_banner.blocks.subheading.label",
+          "info": "t:sections.countdown_timer_banner.blocks.subheading.info",
+          "default": "LIMITED TIME ONLY"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:sections.countdown_timer_banner.blocks.heading.label",
+          "default": "SUPER SALE UPTO 40% OFF"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "t:sections.countdown_timer_banner.blocks.heading_size.label",
+          "options": [
+            {
+              "value": "h6",
+              "label": "t:sections.countdown_timer_banner.blocks.heading_size.options__1.label"
+            },
+            {
+              "value": "h5",
+              "label": "t:sections.countdown_timer_banner.blocks.heading_size.options__2.label"
+            },
+            {
+              "value": "h4",
+              "label": "t:sections.countdown_timer_banner.blocks.heading_size.options__3.label"
+            },
+            {
+              "value": "h3",
+              "label": "t:sections.countdown_timer_banner.blocks.heading_size.options__4.label"
+            },
+            {
+              "value": "h2",
+              "label": "t:sections.countdown_timer_banner.blocks.heading_size.options__5.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.countdown_timer_banner.blocks.heading_size.options__6.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:sections.countdown_timer_banner.blocks.heading_size.options__7.label"
+            }
+          ],
+          "default": "h0"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "t:sections.countdown_timer_banner.blocks.text.label",
+          "default": "<p>Shop our selection of exclusive handbags and bagpacks at reduced price during the super sale.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_1_label",
+          "label": "t:sections.countdown_timer_banner.blocks.button_label.label",
+          "default": "SHOP NOW"
+        },
+        {
+          "type": "url",
+          "id": "button_1_link",
+          "label": "t:sections.countdown_timer_banner.blocks.button_link.label",
+        },
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "t:sections.all.colors.label",
+          "default": "scheme-5"
+        },
+        {
+          "type": "checkbox",
+          "id": "remove_bg",
+          "label": "t:sections.countdown_timer_banner.blocks.remove_bg.label",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Countdown timer"
+        },
+        {
+          "type": "checkbox",
+          "id": "countdown_show",
+          "label": "t:sections.countdown_timer_banner.blocks.countdown_show.label",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "countdown_end_date",
+          "label": "t:sections.countdown_timer_banner.blocks.countdown_end_date.label",
+          "info": "t:sections.countdown_timer_banner.blocks.countdown_end_date.info",
+        },
+        {
+          "type": "text",
+          "id": "countdown_end_time",
+          "label": "t:sections.countdown_timer_banner.blocks.countdown_end_time.label",
+          "info": "t:sections.countdown_timer_banner.blocks.countdown_end_time.info",
+        },
+        {
+          "type": "checkbox",
+          "id": "countdown_hide_on_end",
+          "label": "t:sections.countdown_timer_banner.blocks.countdown_hide_on_end.label",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "countdown_hide_days",
+          "label": "t:sections.countdown_timer_banner.blocks.countdown_hide_days.label",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Countdown style"
+        },
+        {
+          "type": "color",
+          "id": "count_color",
+          "label": "t:sections.countdown_timer_banner.blocks.count_color.label",
+          "default": "#fff"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "t:sections.countdown_timer_banner.blocks.bg_color.label",
+          "default": "#070707"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Countdown banner",
+      "blocks": [
+        {
+          "type": "banner"
+        }
+      ]
+    }
+  ],
+  "disabled_on": {
+    "groups": ["header", "footer", "aside"]
+  }
+}
+{% endschema %}
