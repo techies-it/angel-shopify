@@ -150,11 +150,54 @@
         "mobile_content_alignment": "center",
         "show_text_below": false
       }
+    },
+    "countdown_timer_CPUDFY": {
+      "type": "countdown-timer",
+      "blocks": {
+        "banner_qHnmfg": {
+          "type": "banner",
+          "settings": {
+            "background_type": "image",
+            "background_color": "#222222",
+            "image_desktop": "shopify://shop_images/theme_cover_image.jpg",
+            "content_countdown_layout": "centered",
+            "overlay_position": "justify-center items-center",
+            "overlay_text_align": "text-center",
+            "mob_center_text": false,
+            "subheading": "LIMITED TIME ONLY",
+            "heading": "SUPER SALE UPTO 40% OFF",
+            "heading_size": "h0",
+            "text": "<p>Shop our selection of exclusive handbags and bagpacks at reduced price during the super sale.</p>",
+            "button_1_label": "SHOP NOW",
+            "button_1_link": "",
+            "color_scheme": "scheme-1",
+            "remove_bg": true,
+            "countdown_show": true,
+            "countdown_end_date": "2025-05-10",
+            "countdown_end_time": "12:00",
+            "countdown_hide_on_end": false,
+            "countdown_hide_days": false,
+            "count_color": "#fff",
+            "bg_color": "#070707"
+          }
+        }
+      },
+      "block_order": [
+        "banner_qHnmfg"
+      ],
+      "name": "Countdown banner",
+      "settings": {
+        "height_mode": "auto",
+        "fixed_height_desktop": 600,
+        "fixed_height_mobile": 350,
+        "mobile_stacked": false
+      }
     }
   },
   "order": [
     "slideshow_cPjgXD",
     "featured_collection_fEkqxY",
+    "countdown_timer_CPUDFY",
     "banner_product_collage_WR3iAz",
     "image_banner"
   ]
