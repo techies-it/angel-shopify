@@ -211,7 +211,7 @@
       "name": "Interactive Image with Pinpoints",
       "settings": {
         "main_image": "shopify://shop_images/MAelle_B2.jpg",
-        "image_position": "left",
+        "image_position": "right",
         "background_color": "#ffffff",
         "font_color": "#000000",
         "font_size": 16,
