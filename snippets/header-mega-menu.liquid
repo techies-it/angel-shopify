@@ -73,7 +73,24 @@
           </header-menu>
         {%- else -%}
             {% if collections[link.handle].metafields.hierachy.children.value.count > 0 %}
-              <header-menu>
+              <a
+                id="HeaderMenu-{{ link.handle }}"
+                href="{{ link.url }}"
+                class="header__menu-item list-menu__item link link--text focus-inset"
+                {% if link.current %}
+                  aria-current="page"
+                {% endif %}
+              >
+                <span
+                  {%- if link.current %}
+                    class="header__active-menu-item"
+                  {% endif %}
+                >
+                  {{- link.title | escape -}}
+                </span>
+              </a>
+              {% render 'mega-menu-design1' collection_handle : {{link.handle}} %}
+              {% comment %} <header-menu>
                 <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
                   <summary
                     id="HeaderMenu-{{ link.handle }}"
@@ -135,7 +152,7 @@
 
           </div>
           </details>
-        </header-menu>
+        </header-menu> {% endcomment %}
         {% else %}
               <a
                 id="HeaderMenu-{{ link.handle }}"
@@ -153,7 +170,6 @@
                   {{- link.title | escape -}}
                 </span>
               </a>
-              {%  render 'mega-menu-design1' %}
             {%- endif -%}
       {% endif %}
      

@@ -1,283 +1,41 @@
-{% style %}
-@keyframes menu_dropdowns_li {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-.site-nav__dropdown {
-display: none;
-position: absolute;
-left: 0;
-padding: 0;
-margin: 0;
-z-index:99999;
-border: 1px solid #f1f1f1;
-webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.05);
--webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.05);
-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.05);
-padding: 32px 30px 24px 30px;
-width: 100%;
-}
-.site-nav__item-mega .menu-title {
-font-size: 16x;
-font-weight: 700;
-margin: 8px 0 8px;
-text-transform: uppercase;
-color: #999;
-}
-.site-nav__item-mega a {
-text-decoration:none;
-}
-.site-nav__item .meganav li a {
-color:#2c2c2c;
-font-size:14px;
-}
-.site-nav__item .meganav {
-right: auto;
-min-width: 280px;
-color: var(--header-menudroptext);
-font-family: var(--g-font-2);
-}
-.meganav {
-display: block;
-visibility: hidden;
-opacity: 0;
-background-color: #fff;
--webkit-transition: all ease .3s;
--o-transition: all ease .3s;
-transition: all ease .3s;
-border-radius: 0;
-/* pointer-events: auto !important; */
-}
-.list-menu {
-margin:0;
-padding:0;
-}
-.list-menu li {
-list-style: none;
-}
-.list-menu li:hover>.site-nav__dropdown .d-col-link {
-    opacity: 0;
-    animation: menu_dropdowns_li;
-    animation-fill-mode: forwards;
-    animation-duration: .4s;
-}
-.list-menu li:hover>.site-nav__dropdown {
-opacity: 1;
-visibility: visible;
-}
-.list-menu li .menu-title a {
-color: #000;
-text-decoration:none;
-font-weight:600;
-}
+{% comment %}
+  Renders a megamenu for the header.
 
-.widget-inner .nav-links {
-padding-bottom: 15px;
-padding-left:0;
-}
-
-.widget-inner .nav-links li {
-padding: 4px 0;
-}
-
-.widget-inner .nav-links li a,.meganav__list li .meganav__link {
-position: relative;
-display: inline-block;
-font-size:14px;
-color:#2c2c2c;
-text-decoration:none;
-}
-
-.widget-inner .nav-links li a::before,.meganav__list li .meganav__link:before {
-content: "";
-position: absolute;
-content: "";
-width: 0;
-height: 1px;
-background-color: var(--g-main);
-bottom: 0px;
-left: 0;
-visibility: hidden;
-opacity: 0;
-transition: all 0.3s var(--anim-transition);
-}
-.widget-inner .nav-links li a:hover{
-color:#000;
-}
-.meganav__list li .meganav__link:before {
-bottom: 6px;
-}
-
-.widget-inner .nav-links li a:hover::before,.meganav__list li .meganav__link:hover::before {
-visibility: visible;
-opacity: 1;
-width: 100%;
-}
-
-.collection_menu .hv-image-saturate img{
-    height: 100%;
-    object-fit: cover;
-  }
-  .collection_menu .hv-image-saturate.square{
-    padding-top:100% !important;
-  }
-  .collection_menu .hv-image-saturate.landscape {
-    padding-top: 75% !important;
-  }
-  .collection_menu .hv-image-saturate.portrait {
-    padding-top: 130% !important;
-  }
-  .collection_menu .hv-image-saturate.wide {
-    padding-top: 60% !important;
-  }
-{% endstyle %}
+  Usage:
+  {% render 'mega-menu-design1' %}
+{% endcomment %}
+{%- liquid
+                    assign children= collections[collection_handle].metafields.hierachy.children.value 
+                    assign children_size = collections[collection_handle].metafields.hierachy.children.value.count
+-%}
 <div class="site-nav__dropdown meganav meganav-3">
     <div class="container">
         <div class="row">
             <div class="mega-col mega-link  col ">
                 <div class="row">
-                    <div class="col-sm-3 d-col-link" style="animation-delay: 0.08s;">
-                        <div class="mega-col-inner ">
-                            <div class="menu-title">
-                                <a href="#">Product Layouts</a>
-                            </div>
-                            <div class="widget-inner">
-                                <ul class="nav-links">
-                                    <li>
-                                        <a href="/products/demo-product?view=thumb-bottom">1. Thumbnails - bottom</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/demo-product?view=thumb-left">2. Thumbnails - left</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/demo-product?view=thumb-right">3. Thumbnails - right</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/demo-product?view=without-thumb">4. Without Thumbnails</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/demo-product?view=list-stacked">5. List - stacked</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/demo-product?view=list-grid"> 6. List - grid</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/demo-product?view=collage-s1">7. Collage - style 1</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/demo-product?view=collage-s2">8. Collage - style 2</a>
-                                    </li>
-                                </ul>
+                    {%- for child in children -%}
+                        <div class="col-sm-3 d-col-link" style="animation-delay: 0.08s;">
+                            <div class="mega-col-inner ">
+                                <div class="menu-title">
+                                    {{- child.metafields.hierachy.menu_title.value | default : child.title | link_to: child.url   }}
+                                </div>
+                                {%- if child != blank -%}
+                                <div class="widget-inner">
+                                    <ul class="nav-links">
+                                        {%- for grand_child in child.metafields.hierachy.children.value  -%}
+                                            <li>
+                                                {{- grand_child.metafields.hierachy.menu_title.value | default : grand_child.title | link_to: grand_child.url   }}
+                                            </li>
+                                        {%- endfor-%}
+                                       
+                                    </ul>
+                                </div>
+                                {% endif %}
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-3 d-col-link" style="animation-delay: 0.16s;">
-                        <div class="mega-col-inner ">
-                            <div class="menu-title">
-                                <a href="#">Product Type</a>
-                            </div>
-                            <div class="widget-inner">
-                                <ul class="nav-links">
-                                    <li>
-                                        <a href="/products/cream-to-foam-cleanser">Simple Product</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/timeless-elegance"> Affiliate Product</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/demo-product"> Variable Product</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/spf-50"> Sold Out - Comming</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/drive-jeans-0110">Video - Shopify</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/alicia-dress">Video - Youtube</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/night-dress">Video - Vimeo</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/rising-charm">3D/AR model</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 d-col-link" style="animation-delay: 0.24s;">
-                        <div class="mega-col-inner ">
-                            <div class="menu-title">
-                                <a href="#">List Featured 1</a>
-                            </div>
-                            <div class="widget-inner">
-                                <ul class="nav-links">
-                                    <li>
-                                        <a href="/products/demo-product">Sticky ATC</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/deep-leather-blouse-4"> Frequently Bought Together</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/demo-product">Count down</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/demo-product"> Cross selling Cart</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/cream-to-foam-cleanser">Low stock alert</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/demo-product">Pickup Store</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/am-routine">Delivery Service</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/fave-zip-cardigan">Sibling Product</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 d-col-link" style="animation-delay: 0.32s;">
-                        <div class="mega-col-inner ">
-                            <div class="menu-title">
-                                <a href="#">List Featured 2</a>
-                            </div>
-                            <div class="widget-inner">
-                                <ul class="nav-links">
-                                    <li>
-                                        <a href="/products/demo-product?view=variant-dropdown">Dropdown Variant</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/demo-product?view=thumb-bottom">Swatch Variant Color</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/demo-product?view=variant-image">Swatch Variant Image</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/demo-product?view=variant-image-square"> Variant Image
-                                            Square</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/demo-product?view=tab-accordion"> Description Accordion</a>
-                                    </li>
-                                    <li>
-                                        <a href="/products/demo-product?view=des-tabcenter">Description Tab Center</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
+                    
                 </div>
             </div>
             <div class="mega-col col" style="max-width:20%;flex:0 0 20%;">
