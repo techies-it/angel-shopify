@@ -1,0 +1,73 @@
+
+{% comment %}
+  Renders a megamenu for the header.
+
+  Usage:
+  {% render 'mega-menu-design1' %}
+{% endcomment %}
+{%- liquid
+                    assign children= collections[collection_handle].metafields.hierachy.children.value 
+                    assign children_size = collections[collection_handle].metafields.hierachy.children.value.count
+-%}
+<div class="site-nav__dropdown meganav meganav-3">
+    <div class="container">
+        <div class="row">
+            <div class="mega-col mega-link  col ">
+                <div class="row">
+                    {%- for child in children -%}
+                        <div class="col-sm-3 d-col-link" style="animation-delay: 0.08s;">
+                            <div class="mega-col-inner ">
+                                <div class="menu-title">
+                                    {{- child.metafields.hierachy.menu_title.value | default : child.title | link_to: child.url   }}
+                                </div>
+                                {%- if child != blank -%}
+                                <div class="widget-inner">
+                                    <ul class="nav-links">
+                                        {%- for grand_child in child.metafields.hierachy.children.value  -%}
+                                            <li>
+                                                {{- grand_child.metafields.hierachy.menu_title.value | default : grand_child.title | link_to: grand_child.url   }}
+                                            </li>
+                                        {%- endfor-%}
+                                       
+                                    </ul>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+            <div class="mega-col col" style="max-width:20%;flex:0 0 20%;">
+                <div class="row">
+
+
+                    <div class="collection_menu col d-col-link" style="animation-delay: 0.32s;">
+                        <div class="collection-card-1 text-center mt-3">
+                            <div class="collection-card__image image-content__image-container overflow-hidden">
+                                <a class="image-content__image-wrapper hv-image-saturate overflow-hidden portrait"
+                                    href="/collections/basic-care" style="padding-top:100.0%;">
+                                    <img class="transition lazyautosizes ls-is-cached lazyloaded"
+                                        src="//qx-aarau.myshopify.com/cdn/shop/files/Brightening2-1GelCreme.webp?crop=center&amp;height=1&amp;v=1728440671&amp;width=1"
+                                        data-widths="[180, 360, 540, 720, 900, 1080]" data-aspectratio="1.0"
+                                        data-sizes="auto" loading="lazy" width="1200" height="1200"
+                                        data-srcset="//qx-aarau.myshopify.com/cdn/shop/files/Brightening2-1GelCreme.webp?v=1728440671&amp;width=180 180w, //qx-aarau.myshopify.com/cdn/shop/files/Brightening2-1GelCreme.webp?v=1728440671&amp;width=360 360w, //qx-aarau.myshopify.com/cdn/shop/files/Brightening2-1GelCreme.webp?v=1728440671&amp;width=540 540w, //qx-aarau.myshopify.com/cdn/shop/files/Brightening2-1GelCreme.webp?v=1728440671&amp;width=720 720w, //qx-aarau.myshopify.com/cdn/shop/files/Brightening2-1GelCreme.webp?v=1728440671&amp;width=900 900w, //qx-aarau.myshopify.com/cdn/shop/files/Brightening2-1GelCreme.webp?v=1728440671&amp;width=1080 1080w"
+                                        sizes="274px"
+                                        srcset="//qx-aarau.myshopify.com/cdn/shop/files/Brightening2-1GelCreme.webp?v=1728440671&amp;width=180 180w, //qx-aarau.myshopify.com/cdn/shop/files/Brightening2-1GelCreme.webp?v=1728440671&amp;width=360 360w, //qx-aarau.myshopify.com/cdn/shop/files/Brightening2-1GelCreme.webp?v=1728440671&amp;width=540 540w, //qx-aarau.myshopify.com/cdn/shop/files/Brightening2-1GelCreme.webp?v=1728440671&amp;width=720 720w, //qx-aarau.myshopify.com/cdn/shop/files/Brightening2-1GelCreme.webp?v=1728440671&amp;width=900 900w, //qx-aarau.myshopify.com/cdn/shop/files/Brightening2-1GelCreme.webp?v=1728440671&amp;width=1080 1080w"></a>
+                            </div>
+                            <h3 class="pt-3 m-0">
+                                <a class="" href="/collections/basic-care">
+                                    Basic care
+                                </a>
+                            </h3>
+                            <p class=" txt-body-60">5
+                                Items
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
