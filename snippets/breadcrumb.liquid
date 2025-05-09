@@ -1,0 +1,66 @@
+{% comment %}
+  Automatic Breadcrumb for the pages, collection and Product.
+
+
+{% endcomment %}
+{{ "breadcrumbs.css" |  asset_url |  stylesheet_tag }}
+
+<nav class=" breadcrumb g-breadcrumb text-left" role="navigation" aria-label="breadcrumbs">
+  <div class="container">
+    <a href="{{ routes.root_url }}" title="Home">Home</a>
+    
+    
+    <span aria-hidden="true">/</span>
+    {% if collection %}
+      {%- liquid
+        assign parent = collection.metafields.hierachy.parent.value
+        assign top_parent = parent.metafields.hierachy.parent.value | default: null
+      -%}
+    
+      {% if top_parent %}
+        <span class="collections-parent">
+          {{ top_parent.metafields.hierachy.menu_title | default: top_parent.title | link_to: top_parent.url }}
+        </span>
+        <span aria-hidden="true">/</span>
+      {% endif %}
+    
+      {% if parent %}
+        <span class="collections-parent">
+          {{ parent.metafields.hierachy.menu_title | default: parent.title | link_to: parent.url }}
+        </span>
+        <span aria-hidden="true">/</span>
+      {% endif %}
+    
+      <span class="collections">{{ collection.metafields.hierachy.menu_title | default: collection.title }}</span>
+    
+    {% elsif product.collections and product.collections.size > 0 %}
+      {%- assign product_collection = product.collections.first -%}
+      {%- assign parent = product_collection.metafields.hierachy.parent.value -%}
+      {%- assign top_parent = parent.metafields.hierachy.parent.value | default: null -%}
+    
+      {% if top_parent %}
+        <span class="collections-parent">
+          {{ top_parent.metafields.hierachy.menu_title | default: top_parent.title | link_to: top_parent.url }}
+        </span>
+        <span aria-hidden="true">/</span>
+      {% endif %}
+    
+      {% if parent %}
+        <span class="collections-parent">
+          {{ parent.metafields.hierachy.menu_title | default: parent.title | link_to: parent.url }}
+        </span>
+        <span aria-hidden="true">/</span>
+      {% endif %}
+    
+      <span class="collections-parent">
+        {{ product_collection.metafields.hierachy.menu_title | default: product_collection.title | link_to: product_collection.url }}
+      </span>
+      <span aria-hidden="true">/</span>
+      <span class="product">{{ product.title }}</span>
+    
+    {% elsif product %}
+      <span class="product">{{ product.title }}</span>
+    {% endif %}
+    
+  </div>
+</nav>

@@ -1,0 +1,33 @@
+.breadcrumb {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: .75rem 1rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    background-color: #e9ecef;
+    border-radius: .25rem;
+}
+
+.g-breadcrumb {
+    border-radius: 0;
+    flex-direction: column;
+    color: #000000;
+    padding: 16px 0;
+    margin: 0;
+    background: #ffffff;
+    border-top: 1px solid rgba(0, 0, 0, 0);
+}
+
+.g-breadcrumb a,
+.g-breadcrumb span {
+    padding: 0 3px;
+    font-size: 14px;
+    line-height: 20px;
+    display: inline-block;
+}
+
+.g-breadcrumb a {
+    color: #000000;
+}
