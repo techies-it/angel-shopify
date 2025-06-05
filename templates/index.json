@@ -67,7 +67,7 @@
     "featured_collection_fEkqxY": {
       "type": "featured-collection",
       "settings": {
-        "collection": "women",
+        "collection": "palas-women",
         "products_to_show": 4,
         "title": "Featured collection",
         "heading_size": "h1",
@@ -142,7 +142,7 @@
       "settings": {
         "title": "Multicolumn",
         "heading_size": "h1",
-        "collection": "women"
+        "collection": "palas-women"
       }
     },
     "image_banner": {
