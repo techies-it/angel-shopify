@@ -129,6 +129,7 @@
       "block_order": [
         "banner_qHnmfg"
       ],
+      "disabled": true,
       "name": "Countdown banner",
       "settings": {
         "height_mode": "auto",
@@ -208,6 +209,7 @@
       "block_order": [
         "pinpoint_4bXHyr"
       ],
+      "disabled": true,
       "name": "Interactive Image with Pinpoints",
       "settings": {
         "main_image": "shopify://shop_images/MAelle_B2.jpg",
