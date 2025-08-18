@@ -15,7 +15,7 @@
         "slide_7GEYEk": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/slide2_1.webp",
+            "image": "shopify://shop_images/01676f4115190ea4f50823edffc1b8426dd3ade1.png",
             "image_overlay_opacity": 0,
             "heading": "Rebajas",
             "heading_size": "hxl",
@@ -53,13 +53,14 @@
         "slide_7GEYEk",
         "slide_d9RLQt"
       ],
-      "settings": {
+       "settings": {
         "layout": "full_bleed",
         "slide_height": "medium",
         "slider_visual": "dots",
         "auto_rotate": false,
         "change_slides_speed": 5,
         "image_behavior": "none",
+        "show_arrow_buttons": false,
         "show_text_below": true,
         "accessibility_info": "Slideshow about our brand"
       }

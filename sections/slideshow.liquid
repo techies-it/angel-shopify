@@ -35,10 +35,11 @@
     <div class="slideshow__controls slideshow__controls--top slider-buttons{% if section.settings.show_text_below %} slideshow__controls--border-radius-mobile{% endif %}">
       <button
         type="button"
-        class="slider-button slider-button--prev"
+  class="slider-button slider-button--prev"
         name="previous"
         aria-label="{{ 'sections.slideshow.previous_slideshow' | t }}"
         aria-controls="Slider-{{ section.id }}"
+  {% unless section.settings.show_arrow_buttons %}hidden aria-hidden="true" tabindex="-1"{% endunless %}
       >
         <span class="svg-wrapper">
           {{- 'icon-caret.svg' | inline_asset_content -}}
@@ -74,6 +75,7 @@
         name="next"
         aria-label="{{ 'sections.slideshow.next_slideshow' | t }}"
         aria-controls="Slider-{{ section.id }}"
+  {% unless section.settings.show_arrow_buttons %}hidden aria-hidden="true" tabindex="-1"{% endunless %}
       >
         <span class="svg-wrapper">
           {{- 'icon-caret.svg' | inline_asset_content -}}
@@ -198,6 +200,7 @@
         name="previous"
         aria-label="{{ 'sections.slideshow.previous_slideshow' | t }}"
         aria-controls="Slider-{{ section.id }}"
+  {% unless section.settings.show_arrow_buttons %}hidden aria-hidden="true" tabindex="-1"{% endunless %}
       >
         <span class="svg-wrapper">
           {{- 'icon-caret.svg' | inline_asset_content -}}
@@ -233,6 +236,7 @@
         name="next"
         aria-label="{{ 'sections.slideshow.next_slideshow' | t }}"
         aria-controls="Slider-{{ section.id }}"
+  {% unless section.settings.show_arrow_buttons %}hidden aria-hidden="true" tabindex="-1"{% endunless %}
       >
         <span class="svg-wrapper">
           {{- 'icon-caret.svg' | inline_asset_content -}}
@@ -361,6 +365,12 @@
       ],
       "default": "none",
       "label": "t:sections.all.animation.image_behavior.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrow_buttons",
+      "label": "Show previous/next arrow buttons",
+      "default": true
     },
     {
       "type": "header",

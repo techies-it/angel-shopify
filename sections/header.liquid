@@ -163,7 +163,7 @@
                 }}
               </div>
             {%- else -%}
-              <span class="h2">{{ shop.name }}</span>
+              <span class="h2">{{ section.settings.custom_header_title | default: shop.name }}</span>
             {%- endif -%}
           </a>
       {%- if request.page_type == 'index' -%}
@@ -203,7 +203,7 @@
                 }}
               </div>
             {%- else -%}
-              <span class="h2">{{ shop.name }}</span>
+              <span class="h2">{{ section.settings.custom_header_title | default: shop.name }}</span>
             {%- endif -%}
           </a>
       {%- if request.page_type == 'index' -%}
@@ -479,6 +479,12 @@
       "default": "middle-left",
       "label": "t:sections.header.settings.logo_position.label",
       "info": "t:sections.header.settings.logo_help.content"
+    },
+    {
+      "type": "text",
+      "id": "custom_header_title",
+      "label": "Header text override (used when no logo)",
+      "info": "Leave blank to use your Store name"
     },
     {
       "type": "select",
