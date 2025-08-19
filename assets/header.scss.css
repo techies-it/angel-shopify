@@ -4,3 +4,66 @@
         display: none !important;
     }
 }
+
+/* Normalize wishlist (favorite.svg) icon size and color to match other header icons */
+.header__icon--wishlist .svg-wrapper svg {
+    width: 2rem;
+    height: 2rem;
+    display: block;
+}
+
+/* Ensure the heart uses the theme foreground color */
+.header__icon--wishlist .svg-wrapper path {
+    fill: currentColor;
+}
+
+/* Show labels next to header icons */
+.header__icon--with-label {
+    gap: 0.4rem;
+}
+
+.header__icon-label {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.header__icons { 
+  display: flex; 
+  align-items: center; 
+}
+
+.header__icon {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.header__icon .svg-wrapper svg {
+  width: 18px;
+  height: 18px;
+}
+
+.header__icon-text {
+  margin-left: 8px;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.header__icon-sep {
+  display: inline-block;
+  width: 1px;
+  height: 16px;
+  background: currentColor;
+  opacity: 0.4;
+  margin: 0 12px;
+  align-self: center;
+}
+
+@media screen and (max-width: 749px) {
+  .header__icon-text,
+  .header__icon-sep {
+    display: none;
+  }
+}

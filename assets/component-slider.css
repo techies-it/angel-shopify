@@ -375,3 +375,24 @@ slider-component.slider-component-full-width {
 .slider-button--prev:not([disabled]):hover .icon {
   transform: rotate(90deg) scale(1.1);
 }
+
+/* Remove focus/active ring from slider dots (keep dots visible) */
+.slider-counter__link--dots.link,
+.slider-counter__link--dots.link:hover,
+.slider-counter__link--dots.link:focus,
+.slider-counter__link--dots.link:focus-visible,
+.slider-counter__link--dots.link:active {
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Ensure dots stay visible */
+.slider-counter__link--dots .dot {
+  border: 0.1rem solid rgba(var(--color-foreground), 0.5) !important;
+}
+
+/* Active/current dot stays filled */
+.slider-counter__link--active.slider-counter__link--dots .dot {
+  background-color: rgb(var(--color-foreground)) !important;
+}

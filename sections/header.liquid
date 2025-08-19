@@ -15,62 +15,103 @@
 
 
 <style>
-  header-drawer {
-    justify-self: start;
-    margin-left: -1.2rem;
+  header-drawer { justify-self: start; margin-left: -1.2rem; }
+
+  /* Icons row: align + spacing */
+  .header__icons { display: flex; align-items: center; gap: 0; }
+
+  .header__icon,
+  .header__icons .search-modal__toggle,
+  .header__icons summary.header__icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;                 /* space between icon and text */
+    text-decoration: none;
+  }
+
+  /* Kill theme underline styles on links */
+  .header__icons a.link,
+  .header__icons a.link:hover,
+  .header__icons a.link:focus,
+  .header__icons a.link:active {
+    text-decoration: none !important;
+    background: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    outline: none !important;
+    color: inherit;
+  }
+
+  /* Icon sizing + baseline fix */
+  .header__icon .svg-wrapper {  width: 18px; height: 18px; }
+  .header__icon .svg-wrapper svg { width: 18px; height: 18px; display: block; }
+
+  /* Text label */
+  .header__icon-text {
+    margin: 0;                /* was margin-left; gap now handles spacing */
+    font-size: 1.2rem;
+    line-height: 1;
+    white-space: nowrap;
+    text-transform: none;     /* ensure not forced uppercase */
+    letter-spacing: 0;
+  }
+
+  summary.header__icon::-webkit-details-marker { display: none; }
+
+  /* Vertical separator */
+  .header__icon-sep {
+  display: inline-block;
+  width: 1px;
+  height: 16px;
+  background: currentColor;
+  opacity: 0.4;
+
+  /* ✅ Add spacing so it looks like the screenshot */
+  margin: 0 24px;  /* instead of 0 12px */
+  align-self: center;
+}
+.header__icons {
+  display: flex;
+  align-items: center; /* ensures icons + text + | all line up */
+}
+
+
+/* Size all icons except the search icon */
+.header__icon:not(.header__icon--search) .svg-wrapper svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* Ensure search icon keeps its native size (covers cases without .svg-wrapper too) */
+.header__icon--search .svg-wrapper svg,
+.header__icon--search svg {
+  width: auto;
+  height: auto;
+}
+
+
+
+  @media screen and (max-width: 749px) {
+    .header__icon-text, .header__icon-sep { display: none; }
   }
 
   {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
-    .scrolled-past-header .header__heading-logo-wrapper {
-      width: 75%;
-    }
+    .scrolled-past-header .header__heading-logo-wrapper { width: 75%; }
   {%- endif -%}
 
   {%- if section.settings.menu_type_desktop != "drawer" -%}
-    @media screen and (min-width: 990px) {
-      header-drawer {
-        display: none;
-      }
-    }
+    @media screen and (min-width: 990px) { header-drawer { display: none; } }
   {%- endif -%}
 
-  .menu-drawer-container {
-    display: flex;
-  }
-
-  .list-menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .list-menu--inline {
-    display: inline-flex;
-    flex-wrap: wrap;
-  }
-
-  summary.list-menu__item {
-    padding-right: 2.7rem;
-  }
-
-  .list-menu__item {
-    display: flex;
-    align-items: center;
-    line-height: calc(1 + 0.3 / var(--font-body-scale));
-  }
-
-  .list-menu__item--link {
-    text-decoration: none;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
-    line-height: calc(1 + 0.8 / var(--font-body-scale));
-  }
-
+  .menu-drawer-container { display: flex; }
+  .list-menu { list-style: none; padding: 0; margin: 0; }
+  .list-menu--inline { display: inline-flex; flex-wrap: wrap; }
+  summary.list-menu__item { padding-right: 2.7rem; }
+  .list-menu__item { display: flex; align-items: center; line-height: calc(1 + 0.3 / var(--font-body-scale)); }
+  .list-menu__item--link { text-decoration: none; padding-bottom: 1rem; padding-top: 1rem; line-height: calc(1 + 0.8 / var(--font-body-scale)); }
   @media screen and (min-width: 750px) {
-    .list-menu__item--link {
-      padding-bottom: 0.5rem;
-      padding-top: 0.5rem;
-    }
+    .list-menu__item--link { padding-bottom: 0.5rem; padding-top: 0.5rem; }
   }
 </style>
 
@@ -96,6 +137,10 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  /* Header text override style toggles */
+  .header-text-override.is-bold { font-weight: 700; }
+  .header-text-override.is-italic { font-style: italic; }
 {%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
@@ -163,7 +208,7 @@
                 }}
               </div>
             {%- else -%}
-              <span class="h2">{{ section.settings.custom_header_title | default: shop.name }}</span>
+              <span class="h2 header-text-override{% if section.settings.custom_header_title_bold %} is-bold{% endif %}{% if section.settings.custom_header_title_italic %} is-italic{% endif %}">{{ section.settings.custom_header_title | default: shop.name }}</span>
             {%- endif -%}
           </a>
       {%- if request.page_type == 'index' -%}
@@ -203,7 +248,7 @@
                 }}
               </div>
             {%- else -%}
-              <span class="h2">{{ section.settings.custom_header_title | default: shop.name }}</span>
+              <span class="h2 header-text-override{% if section.settings.custom_header_title_bold %} is-bold{% endif %}{% if section.settings.custom_header_title_italic %} is-italic{% endif %}">{{ section.settings.custom_header_title | default: shop.name }}</span>
             {%- endif -%}
           </a>
       {%- if request.page_type == 'index' -%}
@@ -223,7 +268,6 @@
             {%- endform -%}
           </localization-form>
         {% endif %}
-
         {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
           <localization-form class="small-hide medium-hide" data-prevent-hide>
             {%- form 'localization', id: 'HeaderLanguageForm', class: 'localization-form' -%}
@@ -235,14 +279,25 @@
           </localization-form>
         {%- endif -%}
       </div>
-      {% render 'header-search', input_id: 'Search-In-Modal' %}
 
+      <!-- Search -->
+      {% render 'header-search', input_id: 'Search-In-Modal' %}
+      <span class="header__icon-text header__icon--search-text">Buscar</span>
+      <span class="header__icon-sep" aria-hidden="true"></span>
+
+      <!-- Wishlist -->
+      <a href="/pages/wishlist" class="header__icon header__icon--wishlist link link--text focus-inset" aria-label="Wishlist">
+        <span class="svg-wrapper">{{ 'icon-heart.svg' | inline_asset_content }}</span>
+        <span class="header__icon-text">Favoritos</span>
+        <span class="visually-hidden">Wishlist</span>
+      </a>
+      <span class="header__icon-sep" aria-hidden="true"></span>
+
+      <!-- Account -->
       {%- if shop.customer_accounts_enabled -%}
-        <a
-          href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
-          class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}"
-          rel="nofollow"
-        >
+        <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
+           class="header__icon header__icon--account link link--text focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}"
+           rel="nofollow">
           {%- if section.settings.enable_customer_avatar -%}
             <account-icon>
               {%- if customer and customer.has_avatar? -%}
@@ -254,6 +309,7 @@
           {%- else -%}
             <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
           {%- endif -%}
+          <span class="header__icon-text">{% if customer %}Cuenta{% else %}Iniciar sesión{% endif %}</span>
           <span class="visually-hidden">
             {%- liquid
               if customer
@@ -264,6 +320,7 @@
             -%}
           </span>
         </a>
+        <span class="header__icon-sep" aria-hidden="true"></span>
       {%- endif -%}
 
       {%- for block in section.blocks -%}
@@ -273,12 +330,16 @@
         {%- endcase -%}
       {%- endfor -%}
 
-      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+      <!-- Cart -->
+      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link link--text focus-inset" id="cart-icon-bubble">
+        <span class="svg-wrapper">
           {% if cart == empty %}
-            <span class="svg-wrapper">{{'icon-cart-empty.svg' | inline_asset_content }}</span>
+            {{ 'icon-cart-empty.svg' | inline_asset_content }}
           {% else %}
-            <span class="svg-wrapper">{{'icon-cart.svg' | inline_asset_content }}</span>
+            {{ 'icon-cart.svg' | inline_asset_content }}
           {% endif %}
+        </span>
+        <span class="header__icon-text">Cesta</span>
         <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
         {%- if cart != empty -%}
           <div class="cart-count-bubble">
@@ -407,6 +468,12 @@
   }
 
   customElements.define('sticky-header', StickyHeader);
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const label = document.querySelector('.header__icon--search-text');
+    const toggle = document.querySelector('.header__icon.header__icon--search, .search-modal__toggle, summary.header__icon.header__icon--search');
+    if (label && toggle) label.addEventListener('click', () => toggle.click());
+  });
 {% endjavascript %}
 
 <script type="application/ld+json">
@@ -485,6 +552,18 @@
       "id": "custom_header_title",
       "label": "Header text override (used when no logo)",
       "info": "Leave blank to use your Store name"
+    },
+    {
+      "type": "checkbox",
+      "id": "custom_header_title_bold",
+      "label": "Bold header text",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "custom_header_title_italic",
+      "label": "Italic header text",
+      "default": false
     },
     {
       "type": "select",
