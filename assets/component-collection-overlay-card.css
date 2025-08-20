@@ -1,0 +1,26 @@
+.collection-overlay-card .collection-overlay-card__media .h-center .collection-overlay-card__title .full-unstyled-link {
+    color: white;
+    width: 560px;
+    /* height: 36px; */
+}
+.collection-overlay-card{position:relative}
+.collection-overlay-card__media{display:block;overflow:hidden;position:relative}
+.collection-overlay-card__media img{width:100%;height:100%;object-fit:cover;display:block}
+.collection-overlay-card__content{position:absolute;left:-12rem;right:0;bottom:1.6rem;top:auto;padding:13.6rem;display:flex;flex-direction:column;gap:.8rem;color:#fff;z-index:1}
+/* Horizontal alignment */
+.collection-overlay-card__content.h-left{align-items:flex-start;text-align:left}
+.collection-overlay-card__content.h-center{align-items:center;text-align:center}
+.collection-overlay-card__content.h-right{align-items:flex-end;text-align:right}
+/* Vertical alignment */
+.collection-overlay-card__content.v-top{top:1.6rem;bottom:auto}
+.collection-overlay-card__content.v-center{bottom:auto;transform:translateY(-50%)}
+.collection-overlay-card__content.v-bottom{bottom:1.6rem}
+.collection-overlay-card__title{margin:0;font-size:clamp(1rem,1vw+1rem,1.375rem);font-weight:700;color:#fff; font-size: 35px;}
+/* Clean, plain text-like button on overlay: no border, no before/after glow */
+.collection-overlay-card__button{background:transparent !important;color:#fff !important;border:1px solid !important;box-shadow:none !important;outline:0;position:relative}
+.collection-overlay-card__button::before,
+.collection-overlay-card__button::after{content:none !important;display:none !important}
+.collection-overlay-card__button:hover,
+.collection-overlay-card__button:focus,
+.collection-overlay-card__button:active{background:transparent !important;color:#fff !important;border:0 !important;box-shadow:none !important;outline:0}
+@media (min-width: 990px){.collection-overlay-card__title{font-size:clamp(1.25rem,1vw+1rem,1.75rem)}}

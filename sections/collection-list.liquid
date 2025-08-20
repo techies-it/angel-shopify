@@ -1,6 +1,9 @@
 {{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{%- if section.settings.card_design == 'overlay' -%}
+  {{ 'component-collection-overlay-card.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -25,7 +28,7 @@
 -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="collection-list-wrapper page-width isolate{% if show_mobile_slider %} page-width-desktop{% endif %}{% if section.settings.title == blank %} no-heading{% endif %}{% if section.settings.show_view_all == false or section.blocks.size > collections.size %} no-mobile-link{% endif %} section-{{ section.id }}-padding">
+  <div class="collection-list-wrapper  isolate{% if show_mobile_slider %} page-width-desktop{% endif %}{% if section.settings.title == blank %} no-heading{% endif %}{% if section.settings.show_view_all == false or section.blocks.size > collections.size %} no-mobile-link{% endif %} section-{{ section.id }}-padding">
     {%- unless section.settings.title == blank -%}
       <div class="title-wrapper-with-link{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% else %} title-wrapper--self-padded-mobile{% endif %} title-wrapper--no-top-margin">
         <h2
@@ -72,12 +75,43 @@
           >
             {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
             {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
-            {% render 'card-collection',
-              card_collection: block.settings.collection,
-              media_aspect_ratio: section.settings.image_ratio,
-              columns: columns,
-              placeholder_image: placeholder_image
-            %}
+            {%- if section.settings.card_design == 'overlay' -%}
+              {%- liquid
+                assign h_align = 'center'
+                assign v_align = 'bottom'
+                case section.settings.overlay_position
+                  when 'bottom'
+                    assign h_align = 'center'
+                    assign v_align = 'bottom'
+                  when 'bottom-left'
+                    assign h_align = 'left'
+                    assign v_align = 'bottom'
+                  when 'bottom-right'
+                    assign h_align = 'right'
+                    assign v_align = 'bottom'
+                  when 'middle'
+                    assign h_align = 'center'
+                    assign v_align = 'center'
+                endcase
+              -%}
+              {% render 'card-collection-overlay',
+                card_collection: block.settings.collection,
+                media_aspect_ratio: section.settings.image_ratio,
+                columns: columns,
+                placeholder_image: placeholder_image,
+                show_button: section.settings.show_button,
+                button_label: section.settings.button_label,
+                overlay_h_align: h_align,
+                overlay_v_align: v_align
+              %}
+            {%- else -%}
+              {% render 'card-collection',
+                card_collection: block.settings.collection,
+                media_aspect_ratio: section.settings.image_ratio,
+                columns: columns,
+                placeholder_image: placeholder_image
+              %}
+            {%- endif -%}
           </li>
         {%- endfor -%}
       </ul>
@@ -144,6 +178,16 @@
   },
   "settings": [
     {
+      "type": "select",
+      "id": "card_design",
+      "label": "Card design",
+      "default": "default",
+      "options": [
+        { "value": "default", "label": "Default (Dawn style)" },
+        { "value": "overlay", "label": "Overlay with button (hero style)" }
+      ]
+    },
+    {
       "type": "inline_richtext",
       "id": "title",
       "default": "t:sections.collection-list.settings.title.default",
@@ -177,6 +221,33 @@
       "default": "h1",
       "label": "t:sections.all.heading_size.label"
     },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show button on overlay cards",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "overlay_position",
+      "label": "Overlay quick position",
+      "default": "bottom",
+      "info": "Convenience positions. Overrides horizontal/vertical alignment when selected.",
+      "options": [
+        {"value":"bottom","label":"Bottom (center)"},
+        {"value":"bottom-left","label":"Bottom left"},
+        {"value":"bottom-right","label":"Bottom right"},
+        {"value":"middle","label":"Middle center"},
+        {"value":"custom","label":"Custom (use alignment settings)"}
+      ]
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Ver colección"
+    },
+    
     {
       "type": "header",
       "content": "t:sections.collection-list.settings.header_layout.content"

@@ -1,0 +1,90 @@
+{% comment %}
+  Renders a collection card with overlay title and button (like the second design)
+
+  Accepts:
+  - card_collection: {Object} Collection Liquid object
+  - media_aspect_ratio: {String} adapt | portrait | square
+  - columns: {Number}
+  - button_label: {String}
+  - show_button: {Boolean}
+  - overlay_h_align: {String} left | center | right
+  - overlay_v_align: {String} top | center | bottom
+  - placeholder_image: {String}
+{% endcomment %}
+
+{%- liquid
+  assign ratio = 1
+  if card_collection and card_collection.featured_image and media_aspect_ratio == 'portrait'
+    assign ratio = 0.8
+  elsif card_collection and card_collection.featured_image and media_aspect_ratio == 'adapt'
+    assign ratio = card_collection.featured_image.aspect_ratio
+  endif
+  if ratio == 0 or ratio == null
+    assign ratio = 1
+  endif
+  assign h_align = overlay_h_align
+  assign v_align = overlay_v_align
+  if h_align == blank
+    assign h_align = 'left'
+  endif
+  if v_align == blank
+    assign v_align = 'bottom'
+  endif
+  if button_label == blank
+    assign button_label = 'View collection'
+  endif
+-%}
+
+<div class="collection-overlay-card">
+  <div class="collection-overlay-card__media ratio" style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;">
+    {%- if card_collection and card_collection.featured_image -%}
+      <a href="{{ card_collection.url }}" class="media media--transparent media--hover-effect">
+        <img
+          srcset="
+            {%- if card_collection.featured_image.width >= 165 -%}{{ card_collection.featured_image | image_url: width: 165 }} 165w,{%- endif -%}
+            {%- if card_collection.featured_image.width >= 330 -%}{{ card_collection.featured_image | image_url: width: 330 }} 330w,{%- endif -%}
+            {%- if card_collection.featured_image.width >= 535 -%}{{ card_collection.featured_image | image_url: width: 535 }} 535w,{%- endif -%}
+            {%- if card_collection.featured_image.width >= 750 -%}{{ card_collection.featured_image | image_url: width: 750 }} 750w,{%- endif -%}
+            {%- if card_collection.featured_image.width >= 1000 -%}{{ card_collection.featured_image | image_url: width: 1000 }} 1000w,{%- endif -%}
+            {%- if card_collection.featured_image.width >= 1500 -%}{{ card_collection.featured_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+            {%- if card_collection.featured_image.width >= 3000 -%}{{ card_collection.featured_image | image_url: width: 3000 }} 3000w,{%- endif -%}
+            {{ card_collection.featured_image | image_url }} {{ card_collection.featured_image.width }}w
+          "
+          src="{{ card_collection.featured_image | image_url: width: 1500 }}"
+          sizes="
+            (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: columns }}px,
+            (min-width: 750px) {% if columns > 1 %}calc((100vw - 10rem) / 2){% else %}calc(100vw - 10rem){% endif %},
+            calc(100vw - 3rem)
+          "
+          alt="{{ card_collection.featured_image.alt | escape }}"
+          height="{{ card_collection.featured_image.height }}"
+          width="{{ card_collection.featured_image.width }}"
+          loading="lazy"
+          class="motion-reduce"
+        >
+      </a>
+    {%- else -%}
+      <div class="media media--transparent">
+        {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+      </div>
+    {%- endif -%}
+
+  <div class="collection-overlay-card__content h-{{ h_align }} v-{{ v_align }}">
+      <h3 class="collection-overlay-card__title">
+        <a {% if card_collection %}href="{{ card_collection.url }}"{% else %}role="link" aria-disabled="true"{% endif %} class="full-unstyled-link">
+          {%- if card_collection and card_collection.title != blank -%}
+            {{ card_collection.title | escape }}
+          {%- else -%}
+            {{ 'onboarding.collection_title' | t }}
+          {%- endif -%}
+        </a>
+      </h3>
+      {%- if show_button -%}
+        <a {% if card_collection %}href="{{ card_collection.url }}"{% else %}role="link" aria-disabled="true"{% endif %} class="button button--primary collection-overlay-card__button">
+          {{ button_label }}
+          <span class="icon-wrap">{{ 'icon-arrow.svg' | inline_asset_content }}</span>
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>

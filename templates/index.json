@@ -53,7 +53,7 @@
         "slide_7GEYEk",
         "slide_d9RLQt"
       ],
-       "settings": {
+      "settings": {
         "layout": "full_bleed",
         "slide_height": "medium",
         "slider_visual": "dots",
@@ -69,8 +69,8 @@
       "type": "featured-collection",
       "settings": {
         "collection": "palas-women",
-        "products_to_show": 4,
-        "title": "Featured collection",
+        "products_to_show": 5,
+        "title": "FAVORITOS DEL MOMENTO",
         "heading_size": "h1",
         "description": "",
         "show_description": false,
@@ -78,7 +78,7 @@
         "enable_variant_picker": true,
         "picker_type": "button",
         "swatch_shape": "circle",
-        "columns_desktop": 4,
+        "columns_desktop": 5,
         "enable_desktop_slider": false,
         "full_width": true,
         "show_view_all": false,
@@ -98,52 +98,13 @@
     },
     "countdown_timer_CPUDFY": {
       "type": "countdown-timer",
-      "blocks": {
-        "banner_qHnmfg": {
-          "type": "banner",
-          "settings": {
-            "background_type": "image",
-            "background_color": "#222222",
-            "image_desktop": "shopify://shop_images/theme_cover_image.jpg",
-            "content_countdown_layout": "centered",
-            "overlay_position": "justify-center items-center",
-            "overlay_text_align": "text-center",
-            "mob_center_text": false,
-            "subheading": "LIMITED TIME ONLY",
-            "heading": "SUPER SALE UPTO 40% OFF",
-            "heading_size": "h0",
-            "text": "<p>Shop our selection of exclusive handbags and bagpacks at reduced price during the super sale.</p>",
-            "button_1_label": "SHOP NOW",
-            "button_1_link": "shopify://collections/boots",
-            "color_scheme": "scheme-1",
-            "remove_bg": true,
-            "countdown_show": true,
-            "countdown_end_date": "2025-05-10",
-            "countdown_end_time": "12:00",
-            "countdown_hide_on_end": false,
-            "countdown_hide_days": false,
-            "count_color": "#ffffff",
-            "bg_color": "#070707"
-          }
-        }
-      },
-      "block_order": [
-        "banner_qHnmfg"
-      ],
+      "disabled": true,
       "name": "Countdown banner",
       "settings": {
         "height_mode": "auto",
         "fixed_height_desktop": 600,
         "fixed_height_mobile": 350,
         "mobile_stacked": false
-      }
-    },
-    "banner_product_collage_WR3iAz": {
-      "type": "banner-product-collage",
-      "settings": {
-        "title": "Multicolumn",
-        "heading_size": "h1",
-        "collection": "palas-women"
       }
     },
     "image_banner": {
@@ -180,6 +141,7 @@
         "heading",
         "button"
       ],
+      "disabled": true,
       "settings": {
         "image": "shopify://shop_images/footer-banner-img.png",
         "image_overlay_opacity": 40,
@@ -209,6 +171,7 @@
       "block_order": [
         "pinpoint_4bXHyr"
       ],
+      "disabled": true,
       "name": "Interactive Image with Pinpoints",
       "settings": {
         "main_image": "shopify://shop_images/MAelle_B2.jpg",
@@ -248,6 +211,7 @@
         "product_xRtnFi",
         "collection_NFmF4q"
       ],
+      "disabled": true,
       "name": "t:sections.collage.presets.name",
       "settings": {
         "heading": "Multimedia collage",
@@ -259,15 +223,104 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "featured_collection_ixKayA": {
+      "type": "featured-collection",
+      "disabled": true,
+      "name": "t:sections.featured-collection.presets.name",
+      "settings": {
+        "collection": "",
+        "products_to_show": 4,
+        "title": "Featured collection",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "enable_variant_picker": true,
+        "picker_type": "button",
+        "swatch_shape": "circle",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collection_list_m69n4L": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_3hHD7T": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "padel-rackets"
+          }
+        },
+        "featured_collection_Kde4De": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "alejandro-galan"
+          }
+        },
+        "featured_collection_EHRK9X": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "control-paddles"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_3hHD7T",
+        "featured_collection_Kde4De",
+        "featured_collection_EHRK9X"
+      ],
+      "name": "t:sections.collection-list.presets.name",
+      "settings": {
+        "card_design": "overlay",
+        "title": "",
+        "heading_size": "h1",
+        "show_button": true,
+        "overlay_position": "middle",
+        "button_label": "Ver colección",
+        "image_ratio": "square",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 0,
+        "padding_bottom": 48
+      }
+    },
+    "banner_product_collage_WR3iAz": {
+      "type": "banner-product-collage",
+      "disabled": true,
+      "settings": {
+        "title": "Multicolumn",
+        "heading_size": "h1",
+        "collection": "palas-women"
+      }
     }
   },
   "order": [
     "slideshow_cPjgXD",
     "featured_collection_fEkqxY",
     "countdown_timer_CPUDFY",
-    "banner_product_collage_WR3iAz",
     "image_banner",
     "pinpointer_image_pW7QCQ",
-    "collage_WcmWTk"
+    "collage_WcmWTk",
+    "featured_collection_ixKayA",
+    "collection_list_m69n4L",
+    "banner_product_collage_WR3iAz"
   ]
 }
