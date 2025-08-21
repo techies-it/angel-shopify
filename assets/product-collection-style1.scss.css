@@ -58,7 +58,7 @@
                 top: 0;
                 left: 0;
          }
-        .second-image {
+        .second-image, .product-card-carousel__img {
             opacity: 0;
         }
         &:hover {

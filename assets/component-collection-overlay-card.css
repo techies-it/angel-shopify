@@ -9,7 +9,6 @@
 .collection-overlay-card__content{position:absolute;left:-12rem;right:0;bottom:1.6rem;top:auto;padding:13.6rem;display:flex;flex-direction:column;gap:.8rem;color:#fff;z-index:1}
 /* Horizontal alignment */
 .collection-overlay-card__content.h-left{align-items:flex-start;text-align:left}
-.collection-overlay-card__content.h-center{align-items:center;text-align:center}
 .collection-overlay-card__content.h-right{align-items:flex-end;text-align:right}
 /* Vertical alignment */
 .collection-overlay-card__content.v-top{top:1.6rem;bottom:auto}

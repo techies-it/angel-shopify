@@ -1,0 +1,3 @@
+.slider-mobile-gutter, .slider-component-desktop{position:relative}
+.slider-buttons.slider-buttons--corners{position:absolute;left:.5rem;right:.5rem;bottom:.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;z-index:2;pointer-events:none}
+.slider-buttons.slider-buttons--corners .slider-button{pointer-events:auto}

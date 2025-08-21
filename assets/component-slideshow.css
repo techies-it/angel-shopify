@@ -37,11 +37,13 @@ slideshow-component .slideshow.banner {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 54.5rem;
+  /* max-width: 54.5rem; */
+  width: 100%;
 }
 .slideshow__text  .banner__heading {
   font-family: Fraunces;
-  font-size: 96px;
+  font-size: 84px;
+  color: white;
 }
 .slideshow__text  .banner__text {
   font-family: Fraunces;

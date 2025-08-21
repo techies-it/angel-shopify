@@ -3,6 +3,13 @@
 
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{% if section.settings.controls_position == 'bottom-corners' %}
+  {{ 'section-featured-collection-controls.css' | asset_url | stylesheet_tag }}
+{% endif %}
+{% if section.settings.product_image_carousel %}
+  {{ 'product-card-carousel.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'product-card-carousel.js' | asset_url }}" defer="defer"></script>
+{% endif %}
 
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
@@ -159,7 +166,6 @@
                 image_shape: section.settings.image_shape,
                 show_variant: section.settings.show_variant_picker,
                 lazy_load: false,
-                block: block,
                 placeholder_image: placeholder_image
               %}
             </li>
@@ -167,7 +173,7 @@
         {%- endif -%}
       </ul>
       {%- if show_mobile_slider or show_desktop_slider -%}
-        <div class="slider-buttons">
+        <div class="slider-buttons{% if section.settings.controls_position == 'bottom-corners' %} slider-buttons--corners{% endif %}">
           <button
             type="button"
             class="slider-button slider-button--prev"
@@ -179,7 +185,7 @@
               {{- 'icon-caret.svg' | inline_asset_content -}}
             </span>
           </button>
-          <div class="slider-counter caption">
+          <div class="slider-counter caption{% if section.settings.controls_position == 'bottom-corners' %} small-hide{% endif %}">
             <span class="slider-counter--current">1</span>
             <span aria-hidden="true"> / </span>
             <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
@@ -376,6 +382,22 @@
       "id": "full_width",
       "label": "t:sections.featured-collection.settings.full_width.label",
       "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "product_image_carousel",
+      "label": "Per-product image carousel with bottom arrows",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "controls_position",
+      "label": "Slider controls position",
+      "default": "default",
+      "options": [
+        {"value":"default","label":"Default (above counter)"},
+        {"value":"bottom-corners","label":"Bottom left/right (inside slider)"}
+      ]
     },
     {
       "type": "checkbox",

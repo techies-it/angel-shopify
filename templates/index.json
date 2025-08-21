@@ -299,16 +299,54 @@
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 0,
-        "padding_bottom": 48
+        "padding_bottom": 0
       }
     },
     "banner_product_collage_WR3iAz": {
       "type": "banner-product-collage",
-      "disabled": true,
       "settings": {
         "title": "Multicolumn",
         "heading_size": "h1",
         "collection": "palas-women"
+      }
+    },
+    "slideshow_7QqLxH": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_Y9P9G8": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/a2bb0273bec97cfbb6cdba61c454b007a9f9bccd.png",
+            "image_overlay_opacity": 0,
+            "heading": "Imprescindible atemporal",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "Descubrir",
+            "link": "",
+            "button_style_secondary": true,
+            "show_text_box": false,
+            "box_align": "bottom-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_Y9P9G8"
+      ],
+      "custom_css": [],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "medium",
+        "slider_visual": "dots",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_arrow_buttons": false,
+        "show_text_below": true,
+        "accessibility_info": "Slideshow about our brand"
       }
     }
   },
@@ -321,6 +359,7 @@
     "collage_WcmWTk",
     "featured_collection_ixKayA",
     "collection_list_m69n4L",
-    "banner_product_collage_WR3iAz"
+    "banner_product_collage_WR3iAz",
+    "slideshow_7QqLxH"
   ]
 }
