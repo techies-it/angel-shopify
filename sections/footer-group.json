@@ -16,8 +16,12 @@
       "blocks": {
         "footer-0": {
           "type": "link_list",
+          "disabled": true,
           "settings": {
             "heading": "Quick links",
+            "button_label": "Shop Now",
+            "button_show_arrow": true,
+            "button_url": "",
             "menu": "footer-menu-1"
           }
         },
@@ -25,21 +29,39 @@
           "type": "link_list",
           "settings": {
             "heading": "Quick links",
+            "button_label": "Shop Now",
+            "button_show_arrow": true,
+            "button_url": "",
             "menu": "footer"
           }
         },
-        "footer-1": {
+        "link_list_WzMcyA": {
           "type": "link_list",
           "settings": {
-            "heading": "Online Shop",
-            "menu": "footer-menu-3"
+            "heading": "Quick links",
+            "button_label": "Subscribe",
+            "button_show_arrow": true,
+            "button_url": "shopify://products/adele-25003",
+            "menu": "footer"
+          }
+        },
+        "link_list_47X6jN": {
+          "type": "link_list",
+          "disabled": true,
+          "settings": {
+            "heading": "Quick links",
+            "button_label": "Shop Now",
+            "button_show_arrow": true,
+            "button_url": "shopify://products/adele-25003",
+            "menu": ""
           }
         }
       },
       "block_order": [
         "footer-0",
         "link_list_FDb8K9",
-        "footer-1"
+        "link_list_WzMcyA",
+        "link_list_47X6jN"
       ],
       "settings": {
         "color_scheme": "scheme-1",
@@ -47,8 +69,8 @@
         "newsletter_heading": "Subscribe to our emails",
         "enable_follow_on_shop": true,
         "show_social": true,
-        "enable_country_selector": false,
-        "enable_language_selector": false,
+        "enable_country_selector": true,
+        "enable_language_selector": true,
         "payment_enable": false,
         "show_policy": false,
         "margin_top": 48,

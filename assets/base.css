@@ -3132,6 +3132,7 @@ details-disclosure > details {
 
 .rte > *:last-child {
   margin-bottom: 0;
+  color: white;
 }
 
 .rte table {

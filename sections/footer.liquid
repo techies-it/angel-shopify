@@ -26,6 +26,37 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  /* Footer dark theme overrides */
+  .footer_new {
+    background-color: #000;
+    color: #fff;
+  }
+  .footer_new a {
+    color: #fff;
+  }
+  .footer_new .footer-link a {
+    color: #fff;
+  }
+  .footer_new .button {
+    background: #92ACA0;
+    color: #fff;
+    border: 1px solid #92ACA0;
+    border-radius: 2px;
+  }
+  .footer_new .button:hover {
+    background: #fff;
+    color: #92ACA0;
+    border: 3px solid #92ACA0;
+  }
+  .footer_new .footer__content-bottom {
+    background-color: #000;
+    color: #fff;
+  }
+  .footer_new .svg-wrapper svg {
+    fill: currentColor;
+    color: currentColor;
+  }
 {%- endstyle -%}
 {%- liquid
     assign has_social_icons = true
@@ -173,26 +204,34 @@
                   </li>
                 {%- endfor -%}
               </ul>
+              {%- if block.settings.button_url != blank and block.settings.button_label != blank -%}
+                <a role="link" class="button button--secondary" href="{{ block.settings.button_url }}">
+                  {{ block.settings.button_label }}
+                  {%- if block.settings.button_show_arrow -%}
+                    <span class="svg-wrapper">{{- 'icon-arrow.svg' | inline_asset_content -}}</span>
+                  {%- endif -%}
+                </a>
+              {%- endif -%}
               </div>
             {%- endif -%}
           {%- endcase -%}
         {%- endfor -%}
-        
         <div class="footer-contact">
           <div class="row mb-4">
-            <div class="col-2"><img src="{{ 'phone.png' | asset_url }}" /></div>
+            <div class="col-2"><img src="{{ 'phone.png' | asset_url }}" width="32" height="32" alt="Phone" /></div>
             <div class="col-10"><a href="tel:647556857">647 55 68 57</a></div>
           </div>
            <div class="row mb-4">
-            <div class="col-2"><img src="{{ 'message.png' | asset_url }}" /></div>
+            <div class="col-2"><img src="{{ 'message.png' | asset_url }}" width="32" height="32" alt="Email" /></div>
             <div class="col-10"><a href="mailto:tiendaonline@angelalarcon.com">tiendaonline@angelalarcon.com</a></div>
           </div>
            <div class="row mb-4">
-            <div class="col-2"><img src="{{ 'marker.png' | asset_url }}" /></div>
+            <div class="col-2"><img src="{{ 'marker.png' | asset_url }}" width="32" height="32" alt="Address" /></div>
             <div class="col-10">
               A.G Shoes S.L - Ángel Alarcón C/ Juan de la Cierva, 18 03203 Elche (Alicante)
             </div>
           </div>
+          
         </div>
       </div>
       <div
@@ -258,6 +297,23 @@
           "default": "t:sections.footer.blocks.link_list.settings.heading.default",
           "label": "t:sections.footer.blocks.link_list.settings.heading.label"
         },
+  {
+"type": "text",
+"id": "button_label",
+"default": "Shop Now",
+"label": "Button Label"
+},
+{
+"type": "checkbox",
+"id": "button_show_arrow",
+"label": "Show right arrow",
+"default": true
+},
+{
+"type": "url",
+"id": "button_url",
+"label": "Button URL"
+},
         {
           "type": "link_list",
           "id": "menu",

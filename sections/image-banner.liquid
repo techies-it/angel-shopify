@@ -127,9 +127,13 @@
               {{ block.settings.heading }}
             </h2>
           {%- when 'text' -%}
-            <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
-              <p>{{ block.settings.text }}</p>
-            </div>
+                         <div class="banner__text rte {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
+               <p style="
+                 font-size: {{ block.settings.text_size }}rem;
+                 {% if block.settings.text_bold %}font-weight: bold;{% endif %}
+                 {% if block.settings.text_italic %}font-style: italic;{% endif %}
+               ">{{ block.settings.text }}</p>
+             </div>
           {%- when 'buttons' -%}
             <div
               class="banner__buttons{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} banner__buttons--multiple{% endif %}"
@@ -432,6 +436,28 @@
           ],
           "default": "body",
           "label": "t:sections.image-banner.blocks.text.settings.text_style.label"
+        },
+        {
+          "type": "range",
+          "id": "text_size",
+          "min": 0.5,
+          "max": 2,
+          "step": 0.1,
+          "unit": "rem",
+          "label": "Text Size",
+          "default": 1
+        },
+        {
+          "type": "checkbox",
+          "id": "text_bold",
+          "label": "Bold Text",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "text_italic",
+          "label": "Italic Text",
+          "default": false
         }
       ]
     },
