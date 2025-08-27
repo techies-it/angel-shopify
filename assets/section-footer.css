@@ -52,6 +52,7 @@
 .footer__content-bottom-wrapper {
   display: flex;
   width: 100%;
+  justify-content: center;
 }
 
 @media screen and (max-width: 749px) {
@@ -348,7 +349,7 @@
 @media screen and (min-width: 750px) {
   .footer-block__details-content .list-menu__item--link:hover,
   .copyright__content a:hover {
-    color: rgb(var(--color-foreground));
+    color: rgb(var(--color-background));
     text-decoration: underline;
     text-underline-offset: 0.3rem;
   }
