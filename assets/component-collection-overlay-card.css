@@ -1,12 +1,11 @@
 .collection-overlay-card .collection-overlay-card__media .h-center .collection-overlay-card__title .full-unstyled-link {
     color: white;
-    width: 560px;
-    /* height: 36px; */
+    width: 380px;
 }
 .collection-overlay-card{position:relative}
 .collection-overlay-card__media{display:block;overflow:hidden;position:relative}
 .collection-overlay-card__media img{width:100%;height:100%;object-fit:cover;display:block}
-.collection-overlay-card__content{position:absolute;left:-12rem;right:0;bottom:1.6rem;top:auto;padding:13.6rem;display:flex;flex-direction:column;gap:.8rem;color:#fff;z-index:1}
+.collection-overlay-card__content{position:absolute;left:-9rem;right:0;bottom:1.6rem;top:auto;padding: 9rem 14rem;display:flex;flex-direction:column;gap: 2rem;color:#fff;z-index:1}
 /* Horizontal alignment */
 .collection-overlay-card__content.h-left{align-items:flex-start;text-align:left}
 .collection-overlay-card__content.h-right{align-items:flex-end;text-align:right}
@@ -14,12 +13,66 @@
 .collection-overlay-card__content.v-top{top:1.6rem;bottom:auto}
 .collection-overlay-card__content.v-center{bottom:auto;transform:translateY(-50%)}
 .collection-overlay-card__content.v-bottom{bottom:1.6rem}
-.collection-overlay-card__title{margin:0;font-size:clamp(1rem,1vw+1rem,1.375rem);font-weight:700;color:#fff; font-size: 35px;}
+.collection-overlay-card__title{margin:0;font-weight:700;color:#fff; font-size: 3.6rem;text-transform: uppercase;}
 /* Clean, plain text-like button on overlay: no border, no before/after glow */
-.collection-overlay-card__button{background:transparent !important;color:#fff !important;border:1px solid !important;box-shadow:none !important;outline:0;position:relative}
+/* .collection-overlay-card__button{background:transparent !important;color:#fff !important;border:1px solid !important;box-shadow:none !important;outline:0;position:relative;transition: all 0.5s ease;overflow: hidden;}
+.collection-overlay-card__button:hover {
+	transform: scale(1.03);
+	transition: all 0.4s ease;
+}
 .collection-overlay-card__button::before,
-.collection-overlay-card__button::after{content:none !important;display:none !important}
+.collection-overlay-card__button::after{content:none !important;display:none !important}*/
 .collection-overlay-card__button:hover,
 .collection-overlay-card__button:focus,
-.collection-overlay-card__button:active{background:transparent !important;color:#fff !important;border:0 !important;box-shadow:none !important;outline:0}
+.collection-overlay-card__button:active{background:transparent !important;color:#fff !important;box-shadow:none !important;outline:0}
+.collection-overlay-card__button .icon-wrap{left: .3rem;transition: all .3s ease-in-out;position: relative;}
+.collection-overlay-card__button:hover .icon-wrap{
+	left: .8rem;
+	position: relative;
+	transition: all .3s ease-in-out;
+}
+.collection-overlay-card__button{
+	vertical-align: middle;
+	-webkit-transform: perspective(1px) translateZ(0);
+	transform: perspective(1px) translateZ(0);
+	position: relative;
+	-webkit-transition-property: color;
+	transition-property: color;
+	-webkit-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+	background: transparent !important;
+	border: 1px solid #fff !important;
+	box-shadow: none !important;
+	font-size: 1.6rem;
+}
+.collection-overlay-card__button:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: 50%;
+  transform-origin: 50%;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.collection-overlay-card__button::after{
+	box-shadow: none !important;
+}
+.collection-overlay-card__button:hover, .collection-overlay-card__button:focus, .collection-overlay-card__button:active {
+  color: #000 !important;
+}
+.collection-overlay-card__button:hover:before, .collection-overlay-card__button:focus:before, .collection-overlay-card__button:active:before {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
 @media (min-width: 990px){.collection-overlay-card__title{font-size:clamp(1.25rem,1vw+1rem,1.75rem)}}

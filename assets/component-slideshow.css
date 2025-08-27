@@ -42,13 +42,18 @@ slideshow-component .slideshow.banner {
 }
 .slideshow__text  .banner__heading {
   font-family: Fraunces;
-  font-size: 84px;
+  font-size: 96px;
   color: white;
+  font-weight: 600;
+  line-height: 100%;
 }
 .slideshow__text  .banner__text {
   font-family: Fraunces;
   font-size: 40px;
   font-style: italic;
+  font-weight: 400;
+  margin: 1.5rem !important;
+  line-height: 100%;
 }
 
 .slideshow__text > * {
