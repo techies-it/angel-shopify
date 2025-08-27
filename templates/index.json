@@ -138,64 +138,6 @@
         "mobile_stacked": false
       }
     },
-    "banner_product_collage_WR3iAz": {
-      "type": "banner-product-collage",
-      "disabled": true,
-      "settings": {
-        "title": "Multicolumn",
-        "heading_size": "h1",
-        "collection": "palas-women"
-      }
-    },
-    "image_banner": {
-      "type": "image-banner",
-      "blocks": {
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "Mocasines",
-            "text_style": "subtitle"
-          }
-        },
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Image banner",
-            "heading_size": "h0"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/moccasins",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "text",
-        "heading",
-        "button"
-      ],
-      "disabled": true,
-      "settings": {
-        "image": "shopify://shop_images/footer-banner-img.png",
-        "image_overlay_opacity": 40,
-        "image_height": "small",
-        "image_behavior": "none",
-        "desktop_content_position": "bottom-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-a99a2589-61c6-491c-840f-69843672afa6",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
-      }
-    },
     "pinpointer_image_pW7QCQ": {
       "type": "pinpointer-image",
       "blocks": {
@@ -268,8 +210,6 @@
     "slideshow_cPjgXD",
     "featured_collection_fEkqxY",
     "countdown_timer_CPUDFY",
-    "banner_product_collage_WR3iAz",
-    "image_banner",
     "pinpointer_image_pW7QCQ",
     "collage_WcmWTk"
   ]
