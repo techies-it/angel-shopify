@@ -71,6 +71,28 @@
     if section.blocks.size == 1 and section.blocks[0].type == 'brand_information' and brand_empty and has_social_icons == false and section.settings.newsletter_enable == false and section.settings.enable_follow_on_shop == false
       assign only_empty_brand = true
     endif
+
+    assign footer_cta_label = blank
+    assign footer_cta_url = blank
+    assign footer_cta_show_arrow = false
+    assign show_contact_cta = false
+
+    if section.settings.contact_button_url != blank and section.settings.contact_button_label != blank
+      assign footer_cta_label = section.settings.contact_button_label
+      assign footer_cta_url = section.settings.contact_button_url
+      assign footer_cta_show_arrow = section.settings.contact_button_show_arrow
+      assign show_contact_cta = true
+    else
+      for block in section.blocks
+        if block.type == 'link_list' and block.settings.button_url != blank and block.settings.button_label != blank
+          assign footer_cta_label = block.settings.button_label
+          assign footer_cta_url = block.settings.button_url
+          assign footer_cta_show_arrow = block.settings.button_show_arrow
+          assign show_contact_cta = true
+          break
+        endif
+      endfor
+    endif
   -%}
 <footer class="footer_new">
   <div class="container-fluid">
@@ -204,7 +226,7 @@
                   </li>
                 {%- endfor -%}
               </ul>
-              {%- if block.settings.button_url != blank and block.settings.button_label != blank -%}
+              {%- if block.settings.button_url != blank and block.settings.button_label != blank and show_contact_cta == false -%}
                 <a role="link" class="button button--secondary" href="{{ block.settings.button_url }}">
                   {{ block.settings.button_label }}
                   {%- if block.settings.button_show_arrow -%}
@@ -231,6 +253,16 @@
               A.G Shoes S.L - Ángel Alarcón C/ Juan de la Cierva, 18 03203 Elche (Alicante)
             </div>
           </div>
+            {%- if show_contact_cta and footer_cta_url != blank and footer_cta_label != blank -%}
+              <div class="mt-3">
+                <a role="link" class="button button--secondary" href="{{ footer_cta_url }}">
+                  {{ footer_cta_label }}
+                  {%- if footer_cta_show_arrow -%}
+                    <span class="svg-wrapper">{{- 'icon-arrow.svg' | inline_asset_content -}}</span>
+                  {%- endif -%}
+                </a>
+              </div>
+            {%- endif -%}
           
         </div>
       </div>
@@ -422,6 +454,27 @@
       "id": "newsletter_heading",
       "default": "t:sections.footer.settings.newsletter_heading.default",
       "label": "t:sections.footer.settings.newsletter_heading.label"
+    },
+    {
+      "type": "header",
+      "content": "Contact button"
+    },
+    {
+      "type": "text",
+      "id": "contact_button_label",
+      "label": "Contact button label",
+      "default": "Contact us"
+    },
+    {
+      "type": "checkbox",
+      "id": "contact_button_show_arrow",
+      "label": "Show right arrow on contact button",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "contact_button_url",
+      "label": "Contact button URL"
     },
     {
       "type": "header",
