@@ -140,6 +140,7 @@
     },
     "banner_product_collage_WR3iAz": {
       "type": "banner-product-collage",
+      "disabled": true,
       "settings": {
         "title": "Multicolumn",
         "heading_size": "h1",
@@ -180,6 +181,7 @@
         "heading",
         "button"
       ],
+      "disabled": true,
       "settings": {
         "image": "shopify://shop_images/footer-banner-img.png",
         "image_overlay_opacity": 40,
