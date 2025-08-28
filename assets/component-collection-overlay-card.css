@@ -6,6 +6,7 @@
 .collection-overlay-card__media{display:block;overflow:hidden;position:relative}
 .collection-overlay-card__media img{width:100%;height:100%;object-fit:cover;display:block}
 .collection-overlay-card__content{position:absolute;left:-9rem;right:0;bottom:1.6rem;top:auto;padding: 9rem 14rem;display:flex;flex-direction:column;gap: 2rem;color:#fff;z-index:1}
+/* Ensure same overlay content spacing/position on mobile */
 /* Horizontal alignment */
 .collection-overlay-card__content.h-left{align-items:flex-start;text-align:left}
 .collection-overlay-card__content.h-right{align-items:flex-end;text-align:right}
