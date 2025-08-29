@@ -40,6 +40,7 @@
       "settings": {
         "logo_position": "middle-center",
         "custom_header_title": "ANGEL ALACORN",
+        "custom_header_title_bold": true,
         "mobile_logo_position": "center",
         "menu": "main-menu",
         "menu_type_desktop": "drawer",

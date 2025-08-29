@@ -139,6 +139,7 @@
         "mobile_stacked": false
       }
     },
+<<<<<<< HEAD
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -188,6 +189,8 @@
         "show_text_below": false
       }
     },
+=======
+>>>>>>> 8439a3b8d3d8b229899326db4a8ae5c2035024a0
     "pinpointer_image_pW7QCQ": {
       "type": "pinpointer-image",
       "blocks": {
@@ -367,7 +370,10 @@
     "slideshow_cPjgXD",
     "featured_collection_fEkqxY",
     "countdown_timer_CPUDFY",
+<<<<<<< HEAD
     "image_banner",
+=======
+>>>>>>> 8439a3b8d3d8b229899326db4a8ae5c2035024a0
     "pinpointer_image_pW7QCQ",
     "collage_WcmWTk",
     "collection_list_m69n4L",

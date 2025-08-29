@@ -41,8 +41,9 @@ header-drawer { justify-self: start; margin-left: -1.2rem; }
 .header__icons a span { font-size: 1.4rem; }
 
 /* Icon sizing */
-.header__icon .svg-wrapper { width: 18px; height: 18px; }
+.header__icon .svg-wrapper {  height: 18px; }
 .header__icon .svg-wrapper svg { width: 18px; height: 18px; display: block; }
+.header__icon .svg-wrapper .icon-cart-empty { width: 36px; height: 44px; display: block; }
 
 /* Text labels - uppercase */
 .header__icon-text {
@@ -82,3 +83,115 @@ summary.list-menu__item { padding-right: 2.7rem; }
 @media screen and (min-width: 750px) {
   .list-menu__item--link { padding-bottom: 0.5rem; padding-top: 0.5rem; }
 }
+
+
+/* --- Full-width search bar (modal) --- */
+.header__search .search-modal {
+  position: fixed; /* detach from page-width container */
+  left: 0;
+  right: 0;
+  top: var(--header-height, 80px);
+  background: transparent;
+  box-shadow: none;
+  border: 0;
+  z-index: 60; /* above header */
+}
+
+.header__search .modal-overlay { display: none; }
+
+.header__search .search-modal__content {
+  width: 100%;
+  max-width: none;
+  padding: 0 24px; /* page side padding */
+  background: transparent;
+}
+
+/* Form and field layout */
+.header__search predictive-search { position: relative; display: block; }
+.header__search .search-modal__form { max-width: none; }
+.header__search .field {
+  position: relative;
+  margin: 0;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+.header__search .search__input.field__input {
+  width: 100%;
+  padding: 12px 44px 12px 34px; /* space for icons */
+  border: 0;
+  border-bottom: 1px solid rgba(0,0,0,0.35);
+  border-radius: 0;
+  box-shadow: none;
+  /* background: transparent; */
+  outline: none;
+  font-size: 1.4rem;
+}
+
+/* Label appears as placeholder style */
+.header__search .field__label {
+  position: absolute;
+  left: 34px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: rgba(0,0,0,0.55);
+  font-size: 1.3rem;
+}
+
+.header__search .search__input:focus + .field__label,
+.header__search .search__input:not(:placeholder-shown) + .field__label { opacity: 0; }
+
+/* Left search icon inside field */
+.header__search .search__button.field__button {
+  position: absolute;
+  left: 6px;
+  right: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.header__search .search__button .icon { width: 20px; height: 20px; }
+
+/* Right reset button */
+.header__search .reset__button.field__button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 0;
+}
+
+.header__search .reset__button:not(:focus)::after,
+.header__search .reset__button:not(:focus-visible)::after { display: none; }
+
+/* Predictive dropdown should stretch the viewport below the bar */
+.header__search .predictive-search.predictive-search--header {
+  left: 0;
+  right: 0;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+@media screen and (min-width: 990px) {
+  .header__search .search-modal__content { padding: 43px 40px; }
+}
+
+/* Hide redundant close button inside the bar */
+.header__search .search-modal__close-button { display: none; }
+
+
+
+/* Always hide the header X icon next to the search icon */
+.header__search summary .header__icon-close { display: none !important; }
+/* Ensure the search icon stays visible even when open */
+.header__search details[open] summary .icon-search { display: inline-flex !important; }

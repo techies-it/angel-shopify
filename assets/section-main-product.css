@@ -1488,3 +1488,33 @@ a.product__text {
     border: none;
   }
 }
+
+
+
+
+/* Product accordion: replace caret with + / − */
+.product__accordion details > summary {
+  position: relative;
+  padding-right: 2rem; /* space for the +/− icon */
+}
+
+/* Hide only the caret SVG that is a direct child of summary */
+.product__accordion details > summary > svg {
+  display: none;
+}
+
+.product__accordion details > summary::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.125rem;
+  line-height: 1;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.product__accordion details[open] > summary::after {
+  content: '−';
+}

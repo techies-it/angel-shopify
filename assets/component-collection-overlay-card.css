@@ -77,3 +77,22 @@
   transform: scaleX(1);
 }
 @media (min-width: 990px){.collection-overlay-card__title{font-size:clamp(1.25rem,1vw+1rem,1.75rem)}}
+
+
+/* Collection overlay card — mobile fix */
+@media screen and (max-width: 749px) {
+  .collection-overlay-card__content {
+     position: absolute;
+    left: -7rem;
+    right: 0;
+    bottom: 1.6rem;
+    top: auto;
+    padding: 6rem 10rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    color: #fff;
+    z-index: 1;
+
+  }
+}

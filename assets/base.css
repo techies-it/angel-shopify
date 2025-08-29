@@ -2661,7 +2661,7 @@ details[open] .modal-overlay::after {
 
 .search-modal__content {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   width: 100%;
   height: 100%;
@@ -3132,7 +3132,7 @@ details-disclosure > details {
 
 .rte > *:last-child {
   margin-bottom: 0;
-  color: white;
+  /* color: white; */
 }
 
 .rte table {
@@ -3599,3 +3599,8 @@ details-disclosure > details {
     padding-bottom: 2px;
 }
 
+@media screen and (max-width: 749px) {
+  .header__icon.header__icon--menu.header__icon--summary.link.focus-inset span::after {
+    padding-left: 65px;
+  }
+}
