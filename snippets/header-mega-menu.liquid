@@ -89,7 +89,7 @@
                   {{- link.title | escape -}}
                 </span>
               </a>
-              {% render 'mega-menu-design1' collection_handle : {{link.handle}} %}
+              {% render 'mega-menu-design1', collection_handle: link.handle %}
               {% comment %} <header-menu>
                 <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
                   <summary
@@ -177,3 +177,13 @@
     {%- endfor -%}
   </ul>
 </nav>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% render 'mega-menu-design1' collection_handle : {{link.handle}} %}"
+  to: "{% render 'mega-menu-design1', collection_handle: link.handle %}"
+  position: 3823..3887
+{% endcomment %}

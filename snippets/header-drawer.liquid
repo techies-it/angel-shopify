@@ -134,7 +134,7 @@
                           {{- 'icon-caret.svg' | inline_asset_content -}}
                         </span>
                       </summary>
-                    {%  render 'header-dynamic-menu' collection_handle : {{link.handle}} %}
+                    {% render 'header-dynamic-menu', collection_handle: link.handle %}
                     </details>
                   {% else %}
                   
@@ -312,3 +312,13 @@
     </div>
   </details>
 </header-drawer>
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%  render 'header-dynamic-menu' collection_handle : {{link.handle}} %}"
+  to: "{% render 'header-dynamic-menu', collection_handle: link.handle %}"
+  position: 7937..8003
+{% endcomment %}
